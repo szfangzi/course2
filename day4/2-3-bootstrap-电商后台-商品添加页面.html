@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="public/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="public/main.css" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:;">电商管理后台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:;">Dashboard</a></li>
+                <li><a href="javascript:;">Settings</a></li>
+                <li><a href="javascript:;">Profile</a></li>
+                <li><a href="javascript:;">Help</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="javascript:;">商品管理</a></li>
+                <li class="active"><a href="javascript:;">新增商品</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="javascript:;">订单管理</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="javascript:;">用户管理</a></li>
+                <li><a href="javascript:;">新增用户</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="">图表</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h2 class="sub-header">
+              商品添加
+            </h2>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="inputPName" class="col-sm-2 control-label">商品名称</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputPName">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputDetail" class="col-sm-2 control-label">商品详情</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" rows="3" id="inputDetail"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputUp" class="col-sm-2 control-label">是否上架</label>
+              <div class="col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="" id="inputUp">
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPrice" class="col-sm-2 control-label">价格</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="inputPrice">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <a class="btn btn-default" href="javascript:;">确认保存</a>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="public/jquery.min.js"></script>
+<script src="public/bootstrap/js/bootstrap.min.js"></script>
+<script src="public/main.js"></script>
+</body>
+</html>

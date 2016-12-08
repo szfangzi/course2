@@ -54,78 +54,68 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h2 class="sub-header">商品管理</h2>
+            <h2 class="sub-header">
+              商品管理
+              <div class="btn-group btn-group-sm pull-right" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">批量上架</button>
+                <button type="button" class="btn btn-default">批量下架</button>
+                <button type="button" class="btn btn-default">批量删除</button>
+              </div>
+            </h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th><input type="checkbox"></th>
-                        <th>商品id</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>商品ID</th>
+                        <th>商品名称</th>
+                        <th>上下架状态</th>
+                        <th>价格(元)</th>
+                        <th>创建日期</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
+                        <td>1001</td>
+                        <td>iphone</td>
+                        <td>已上架</td>
+                        <td>79</td>
+                        <td>2015-11-2</td>
+                        <td>
+                          <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default btn-edit">编辑</button>
+                            <button type="button" class="btn btn-default btn-down">下架</button>
+                            <button type="button" class="btn btn-default btn-del">删除</button>
+                          </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
+
                     </tbody>
                 </table>
+
+              <nav>
+                <ul class="pagination pull-right">
+                  <li>
+                    <a href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li>
+                    <a href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+
+
             </div>
         </div>
     </div>
@@ -135,7 +125,7 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="public/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="public/bootstrap/js/bootstrap.min.js"></script>
+<script src="public/main.js"></script>
 </body>
 </html>
