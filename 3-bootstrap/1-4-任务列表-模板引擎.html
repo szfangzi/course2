@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="public/jquery.min.js"></script>
+    <script type="text/javascript" src="public/ejs.min.js"></script>
+  <style>
+    .name-input{
+      width: 50px;
+      display: none;
+    }
+    li.changed .name-input{
+      display: inline-block;
+    }
+    li.changed .name-text{
+      display: none;
+    }
+    .del-line{
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+<!-- 练习7 和上次任务列表功能一样，但是每个li元素里面要多一个删除按钮，可以删除li元素 元素的删除用jq的remove方法 -->
+<!--练习8 刚才删除li元素后，localStorge里面的相应数据也要删除-->
+<h1>任务列表</h1>
+<input type="text" placeholder="请填写你的任务">
+<ul>
+
+</ul>
+<span class="unf-len">还剩下<b></b>个未完成的任务</span>
+<a href="#all" id="all-btn">所有任务</a>
+<a href="#unf" id="unf-btn">未完成的任务</a>
+<a href="#f" id="f-btn">已完成的任务</a>
+<a href="javascript:;" id="del-all-btn">删除所有已完成的任务</a>
+
+<!--练习9 每个li元素里面要多一个复选框，显示列表的时候，如果isTick为1，那复选框要打钩，否则不打钩 -->
+
+<!--练习10 如果点击复选框，打钩后，那么localStorge相应的数据也要修改，反之亦然。 提示：$(复选框选择器).prop('checked')可以获取打钩状态-->
+
+<!--练习11 如果isTick是1，那么我的任务名要加删除线(样式是text-decoration: line-through;)，否则不要删除线-->
+
+<!--练习12 点击 所有任务 未完成的任务 已完成的任务 列表要显示相应的数据 -->
+
+<!--练习13 计算还剩下多少个未完成任务并显示相应位置 -->
+
+<!--练习14 增加删除所有已完成的任务的功能 -->
+
+<!--练习15 双击任务名称会切换成文本框，失去焦点后会把文本框的新值替换老的任务名称 -->
+
+<script type="text/template" id="tmpl">
+  <% for(var i=0;i<arr.length;i++){ %>
+  <li tid="<%=arr[i].id%>" ><input type="checkbox" class="check" <%if(arr[i].isTick){%>checked<%}%> ><span class="name-text <%if(arr[i].isTick){%>del-line<%}%>"><%=arr[i].name%></span><input type="text" class="name-input" /><button>删除</button></li>
+  <% } %>
+</script>
+
+<script>
+  var arr = get('list');
+  listRender(arr);
+
+//  回车保存新任务
+  $('input').on('keyup', function (e) {
+    var val = $('input').val().trim();
+    if(e.keyCode == 13 && val){
+      arr.push({name:val,isTick:0,id:uuid()});
+      save('list', arr);
+      listRender(arr);
+      $('input').val('');
+    }
+  });
+
+//  点击复选框修改任务是否完成
+  $('ul').on('click', '.check', function (e) {
+    var $name = $(this).parent().find('.name-text');
+    var name = $name.html();
+    for (var i = 0; i < arr.length; i++) {
+      if(arr[i].name == name){
+        if($(this).prop('checked')){
+          arr[i].isTick = 1;
+          $name.addClass('del-line');
+        }else{
+          arr[i].isTick = 0;
+          $name.removeClass('del-line');
+        }
+      }
+    }
+    save('list', arr);
+    listRender(arr);
+
+//    双击文本修改任务
+  }).on('dblclick', '.name-text', function (e) {
+    var $this = $(this);
+    $this.parent().addClass('changed');
+    $this.parent().find('.name-input').focus().val($this.html());
+
+//    文本框失去焦点后修改任务名
+  }).on('blur', '.name-input', function (e) {
+    var $this = $(this);
+    var id = $this.parent().attr('tid');
+    $this.parent().removeClass('changed');
+    var name = $this.val().trim();
+    if(name){
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i].id == id){
+          arr[i].name = name;
+          break;
+        }
+      }
+      save('list', arr);
+      listRender(arr);
+    }
+//删除任务
+  }).on('click', 'button', function (e) {
+    var $this = $(this);
+    var id = $this.parent().attr('tid');
+    for (var i = 0; i < arr.length; i++) {
+      if(arr[i].id == id){
+        arr.splice(i, 1);
+        save('list', arr);
+        listRender(arr);
+        break;
+      }
+    }
+  });
+
+//  渲染列表
+//  function listRender(arr) {
+//    var html = '';
+//    for (var i = 0; i < arr.length; i++) {
+//      if(arr[i].isTick){
+//        html += '<li tid="'+arr[i].id+'"><input type="checkbox" class="check" checked><span class="name-text del-line">'+arr[i].name+'</span><input type="text" class="name-input" /><button>删除</button></li>';
+//      }else{
+//        html += '<li tid="'+arr[i].id+'"><input type="checkbox" class="check"><span class="name-text">'+arr[i].name+'</span><input type="text" class="name-input" /><button>删除</button></li>';
+//      }
+//    }
+//    $('ul').html(html);
+//
+//    lenRender();
+//  }
+//  渲染列表(ejs模板引擎版)
+  function listRender(arr) {
+    var tmpl = $('#tmpl').html();
+    var html = ejs.render(tmpl, {arr:arr});
+    $('ul').html(html);
+    lenRender();
+  }
+//  计算未完成任务数量更新到页面上
+  function lenRender() {
+    var len = arr.filter(function (n) {
+      return n.isTick == 0;
+    }).length;
+    $('.unf-len b').html(len);
+  }
+
+
+//显示所有任务
+  $('#all-btn').on('click', function () {
+    listRender(arr);
+  });
+//  显示未完成任务
+  $('#unf-btn').on('click', function () {
+    var newArr = arr.filter(function (n) {
+      return n.isTick == 0;
+    });
+    listRender(newArr);
+  });
+//  显示已完成任务
+  $('#f-btn').on('click', function () {
+    var newArr = arr.filter(function (n) {
+      return n.isTick == 1;
+    });
+    listRender(newArr);
+  });
+//  删除所有未完成任务
+  $('#del-all-btn').on('click', function () {
+    var newArr = arr.filter(function (n) {
+      return n.isTick == 0;
+    });
+    arr = newArr;
+    save('list', arr);
+    listRender(arr);
+  });
+
+//  保存值到localstorge指定key
+  function save(key, val){
+    val = JSON.stringify(val);
+    localStorage.setItem(key, val);
+  }
+
+//  从localstorge获取指定key的值
+  function get(key){
+    var val = localStorage.getItem(key);
+    if(val){
+      val = JSON.parse(val);
+      return val;
+    }else{
+      return [];
+    }
+
+  }
+
+//  生成唯一的id
+  function uuid() {
+    var i, random;
+    var uuid = '';
+
+    for (i = 0; i < 32; i++) {
+      random = Math.random() * 16 | 0;
+      if (i === 8 || i === 12 || i === 16 || i === 20) {
+        uuid += '-';
+      }
+      uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+    }
+
+    return uuid;
+  }
+
+
+//  过滤器
+//  var newArr = [{name:"a",isTick:1},{name:"b",isTick:0}].filter(function(n){
+//    return n.isTick==1;
+//  });
+//  console.log(newArr);
+
+//  任务12思路
+//  $('#unf-btn').on('click', function (e) {
+//    过滤数组
+//    把新数组拼成页面字符串
+//    把页面字符串填到页面上
+//
+//  });
+//  任务简要
+//  以下功能都要存储的localstorge
+//  1.文本框回车添加任务
+//  2.任务要放到ul里面
+//  2.每个任务有个复选框和删除按钮
+//  3.任务删除，复选框点击，均要修改localstorge的数据
+
+
+</script>
+</body>
+</html>
