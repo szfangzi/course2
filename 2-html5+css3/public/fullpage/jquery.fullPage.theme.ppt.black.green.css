@@ -1,0 +1,12 @@
+.ppt{color: #fff;}
+.ppt .section{background-color: #111;box-sizing: border-box;padding: 0 10px;}
+.ppt .section h3 { text-align: center; font: 50px "Microsoft Yahei";font-weight: bold;}
+.ppt .section p, .ppt .section a{ text-align: center; font: 25px "Microsoft Yahei";}
+.ppt .section p{box-sizing: border-box;padding: 0 40px;}
+.ppt .section p img + img{margin-left: 5px;}
+.ppt .section div{text-align: center;}
+.ppt .section ul,.ppt .section ol{display: inline-block;text-align: left;font-size: 25px;box-sizing: border-box;padding: 0 40px;}
+.ppt .section li{}
+.ppt .green{color: #4E8938;}
+.ppt .section *:not(.slide):not(li):nth-child(even), .ppt .slide *:not(li):nth-child(even){color: #4E8938;}
+b{color: #ec971f;}

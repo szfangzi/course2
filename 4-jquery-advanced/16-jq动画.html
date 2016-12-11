@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="../public/js/plugin/fullpage/jquery.fullPage.css">
+    <link rel="stylesheet" href="../public/js/plugin/fullpage/jquery.fullPage.theme.ppt.black.green.css">
+    <script type="text/javascript" src="../public/js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="../public/js/plugin/fullpage/jquery.fullPage.js"></script>
+    <script>
+        $(function(){
+            $('.ppt').fullpage({ });
+        });
+    </script>
+</head>
+<body>
+<div class="ppt">
+    <div class="section">
+        <h3>jq常用动画</h3>
+        <p class="green">数字参数是动画时间，还可以加回调函数</p>
+        <ul>
+            <li>隐藏:$('#box').hide(400, function(){ });</li>
+            <li>显示:$('#box').show(400, function(){ });</li>
+            <li>自定义动画:$('#box').animate({'width':600,'height':600}, 1000, function () { });</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

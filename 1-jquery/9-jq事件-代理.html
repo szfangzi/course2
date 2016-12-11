@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../public/js/jquery-1.11.1.js"></script>
+</head>
+<body>
+<ul>
+  <li><span>学前端1</span><button>删除</button></li>
+  <li><span>学前端2</span><button>删除</button></li>
+  <li><span>学前端3</span><button>删除</button></li>
+</ul>
+<script>
+  $('button').on('click', function (e) {
+//    这里的this是你刚才点击的按钮的dom元素，我们可以通过$(this)来转化成jq元素
+//    parent()就是找到指定元素的父元素
+//    remove()就是删除元素
+//    find()是找到子元素
+//    html()是获取元素的内容，相当于innerHTML
+    var name = $(this).parent().find('span').html();
+    $(this).parent().remove();
+  });
+//$('ul').on('click', 'button', function () {
+//  $(this).parent('li').remove();
+//});
+//$('ul').append($('<li>4<button>删除</button></li>'));
+////  按钮4能删除吗？
+//
+////  事件代理
+
+
+</script>
+</body>
+</html>

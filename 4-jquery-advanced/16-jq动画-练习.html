@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin: 50px 50px;
+            background-color: red;
+            font-size: 36px;
+        }
+    </style>
+    <script type="text/javascript" src="../public/js/jquery-1.11.1.js"></script>
+</head>
+<body>
+<div id="box" class="box">div</div>
+<button id="btn">隐藏盒子后显示盒子，然后改变盒子高宽</button>
+
+<p style="width: 200px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque illo vitae voluptas. At blanditiis commodi dolor dolorum eius, eveniet expedita fuga id in laudantium magnam, molestiae porro quas quasi veniam.</p>
+<a href="javascript:;" style="position:fixed;bottom: 100px;right: 10px;"><img src="../public/img/top.jpg" alt=""></a>
+
+<script>
+//  隐藏:
+    $('#box').hide(400, function(){ });
+//  显示:
+    $('#box').show(400, function(){ });
+//  自定义动画:
+    $('#box').animate({'width':600,'height':600}, 1000, function () { });
+
+
+
+
+//  练习
+//点击按钮，隐藏盒子后显示盒子，然后改变盒子高宽，动画时间均为500毫秒
+//点击火箭，页面滚到最上边，提示：元素为$('body')，要改变的属性为scrollTop
+
+</script>
+
+</body>
+</html>

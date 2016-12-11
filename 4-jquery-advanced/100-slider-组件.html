@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <style>
+    *{padding: 0;margin: 0;}
+    ul,ol,li{list-style: none;}
+    div{
+      width: 100%;
+      overflow: hidden;
+      height: 300px;
+    }
+    ul{
+      width: 300%;
+      position: relative;
+      height: 300px;
+    }
+    li{
+      width: 33.3333%;
+      float: left;
+      height: 300px;
+
+    }
+    li:nth-of-type(1){
+      background-color: #00aaee;
+    }
+    li:nth-of-type(2){
+      background-color: red;
+    }
+    li:nth-of-type(3){
+      background-color: green;
+    }
+    .prev{
+      position: absolute;
+      left: 0;
+    }
+    .next{
+      position: absolute;
+      right: 0;
+    }
+  </style>
+  <script src="../public/js/jquery-1.11.1.js"></script>
+</head>
+<body>
+
+<div class="slider">
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <a href="javascript:;" class="page-change prev">上一页</a>
+  <a href="javascript:;" class="page-change next">下一页</a>
+</div>
+
+<script>
+  $.fn.slider = function (options) {
+    var self = this;
+
+    var defaults = {
+      autoplay:true,
+      autoplaytime:2000
+    };
+    var current = 1;
+    var len = self.find('li').length;
+    var playInterval = null;
+    var $next = self.find('.next');
+    var $prev = self.find('.prev');
+
+    self.init = function () {
+      self.options = $.extend({}, defaults, options);
+
+      self.bindEvent();
+
+      if(self.options.autoplay){
+        self.setAutoPlay();
+      }
+
+      return self;
+    };
+
+    self.bindEvent = function () {
+      $next.on('click', function () {
+        self.next();
+      });
+      $prev.on('click', function () {
+        self.prev();
+      });
+      self.on('mouseenter', function () {
+        clearInterval(playInterval);
+      }).on('mouseleave', function () {
+        if(self.options.autoplay) {
+          self.setAutoPlay();
+        }
+      });
+    };
+
+    self.setAutoPlay = function () {
+      playInterval = setInterval(function () {
+        self.next();
+      }, self.options.autoplaytime);
+    };
+
+    self.next = function () {
+      if(current == len){
+        current = 1;
+      }else{
+        current++;
+      }
+      self.find('ul').animate({left:-(current-1)*100+'%'});
+    };
+
+    self.prev = function () {
+      if(current == 1){
+        current = len;
+      }else{
+        current--;
+      }
+      self.find('ul').animate({left:-(current-1)*100+'%'});
+    };
+
+    return self.init();
+  };
+
+$('.slider').slider({
+  autoplay:false
+});
+
+</script>
+</body>
+</html>

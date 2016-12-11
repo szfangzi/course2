@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="../public/js/plugin/fullpage/jquery.fullPage.css">
+    <link rel="stylesheet" href="../public/js/plugin/fullpage/jquery.fullPage.theme.ppt.black.green.css">
+    <script type="text/javascript" src="../public/js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="../public/js/plugin/fullpage/jquery.fullPage.js"></script>
+    <script>
+        $(function(){
+            $('.ppt').fullpage({ });
+        });
+    </script>
+</head>
+<body>
+<div class="ppt">
+    <div class="section">
+        <h3>jquery简介</h3>
+        <div>
+            <ul class="green">
+                <li>什么是jquery？</li>
+                <li>什么是库？</li>
+                <li>为什么要使用jquery？</li>
+                <li>那什么时候不使用jquery呢？</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section">
+        <div class="slide">
+            <h3>什么是jquery？</h3>
+            <p class="green">jquery是一个dom操作库</p>
+        </div>
+        <div class="slide">
+            <h3>什么是库？</h3>
+            <p class="green">用js代码编写的一些方法集合，我们可以通过引用这个js文件来使用里面的方法</p>
+        </div>
+        <div class="slide">
+            <h3>什么是jquery？</h3>
+            <p class="green">包含大量实用的方法</p>
+            <ul>
+                <li>选择器</li>
+                <li>操作元素</li>
+                <li>生成元素</li>
+                <li>添加事件</li>
+                <li>动画</li>
+                <li>特效</li>
+                <li>HTTP请求(AJAX)</li>
+            </ul>
+        </div>
+      <div class="slide">
+        <h3>我们来看看jquery的API手册吧</h3>
+      </div>
+    </div>
+    <div class="section">
+        <div class="slide">
+            <h3>为什么使用jquery？</h3>
+            <a href="../public/img/need-jquery.png" target="_blank" class="green">举一些例子</a>
+        </div>
+        <div class="slide">
+            <h3>为什么使用jquery？</h3>
+            <ul class="green">
+                <li>jquery的dom操作太强大了，原生js的dom操作实在是垃圾</li>
+                <li>使用简单</li>
+                <li>兼容各大浏览器</li>
+                <li>优雅的封装了ajax方法</li>
+                <li>非常多的人使用</li>
+                <li>这库写的好，有很多值得学习的地方</li>
+            </ul>
+        </div>
+        <div class="slide">
+            <h3>那什么时候不使用jquery呢？</h3>
+            <ul class="green">
+                <li>当原生js的dom操作变得强大的时候</li>
+                <li>当你的代码不依赖jquery</li>
+                <li>严重考虑性能的时候</li>
+                <li>当越来越多人放弃jquery的时候</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

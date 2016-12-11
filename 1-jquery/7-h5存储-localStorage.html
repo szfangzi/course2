@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+<script type="text/javascript" src="../public/js/jquery-1.11.1.js"></script>
+<script>
+//  通过localStorage可以把数据，通过字符串的形式，永久存储在硬盘的某个文件里，总共能存5m
+//不同的数据通过localStorage的属性名区别
+//存值
+//  localStorage.setItem('name', 'ken');
+////取值
+//  localStorage.getItem('name');
+////删除值
+//localStorage.removeItem('name');
+
+
+  //  如何存取数组与对象？
+
+  var arr = [{id:1,name:"a",isTick:1},{id:2,name:"b",isTick:0}];
+
+  //  练习1 写一个函数，功能是把 arr 存到localStorage中的指定key
+
+function save(key, val){
+  val = JSON.stringify(val);
+  localStorage.setItem(key, val);
+}
+
+  //  练习2 写一个函数，功能是返回localStorage中指定key的值
+function get(key){
+  var val = localStorage.getItem(key);
+  val = JSON.parse(val);
+  return val;
+}
+
+  //  arguments是啥？
+
+  //  挑战题：合并刚才的两个函数
+</script>
+</body>
+</html>
