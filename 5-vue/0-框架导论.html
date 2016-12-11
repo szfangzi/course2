@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <link rel="stylesheet" href="public/fullpage/jquery.fullPage.css">
+  <link rel="stylesheet" href="public/fullpage/jquery.fullPage.theme.ppt.black.green.css">
+  <script type="text/javascript" src="public/jquery.min.js"></script>
+  <script type="text/javascript" src="public/fullpage/jquery.fullPage.js"></script>
+  <script>
+    $(function () {
+      $('.ppt').fullpage({});
+    });
+  </script>
+</head>
+<body>
+<div class="ppt">
+  <div class="section">
+    <h3>框架</h3>
+    <ul>
+      <li>框架是什么？</li>
+      <li>什么时候要用框架？</li>
+      <li>用什么框架？</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>框架是什么？</h3>
+    <p>
+      <img src="public/img/framework-2.PNG" >
+    </p>
+    <ul>
+      <li>模板引擎</li>
+      <li>组件化系统</li>
+      <li>客户端路由</li>
+      <li>大规模状态管理</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h3>模板引擎</h3>
+    <p>比“拼接字符串”更适合处理复杂页面内容更新</p>
+  </div>
+  <div class="section">
+    <div class="slide">
+      <h3>组件化系统</h3>
+      <p>演示：3-组件化开发-jquery组件开发</p>
+      <ul>
+        <li>$.fn.组件名</li>
+        <li>$.extend</li>
+      </ul>
+    </div>
+    <div class="slide">
+      <h3>组件化系统-组件思路</h3>
+      <ul>
+        <li>通过$.fn.组件名 定义组件</li>
+        <li>var self = this</li>
+        <li>在组件里面定义默认参数</li>
+        <li>定义插件初始化函数</li>
+        <li>定义初始化样式函数和绑定事件函数</li>
+        <li>定义一些其他的函数</li>
+        <li>返回this(self)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <h3>客户端路由</h3>
+    <p>演示：4-客户端路由.html</p>
+  </div>
+  <div class="section">
+    <div class="slide">
+      <h3>大规模状态管理</h3>
+      <p>简单的说就是页面数据与内容显示的管理</p>
+      <ul>
+        <li>那为什么需要状态管理？</li>
+        <li>如何进行状态管理？</li>
+      </ul>
+    </div>
+    <div class="slide">
+      <h3>那为什么需要状态管理？</h3>
+      <p>wunderlist的超级复杂任务列表, 完成任务后, 有多个地方要更新, 如果用传统的dom操作更新, 由于页面数据更新逻辑复杂, 所以容易出错, 且不利于维护。</p>
+    </div>
+    <div class="slide">
+      <h3>如何进行状态管理？</h3>
+      <p>比较简单的办法是数据确保正确更新后，统一用模板引擎渲染页面</p>
+      <p>通过localStorage模拟数据库，我们来学习数据层get、set函数编写</p>
+    </div>
+  </div>
+  <div class="section">
+    <h3>挑战项目</h3>
+    <p>
+      <img src="public/img/framework-todolist.PNG" alt="">
+    </p>
+    <p>演示地址：http://todomvc.com/examples/jquery/#/all</p>
+  </div>
+  <div class="section">
+    <h3>什么时候要用框架？</h3>
+    <p>
+      <img src="public/img/framework-1.PNG" >
+    </p>
+  </div>
+  <div class="section">
+    <h3>用什么框架？</h3>
+    <p>
+      <img src="public/img/framework-3.PNG" >
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

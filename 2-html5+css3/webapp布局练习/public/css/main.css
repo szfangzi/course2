@@ -1,0 +1,234 @@
+@charset "UTF-8";
+/*基本变量*/
+/************
+ * 基本默认值
+ ************/
+html {
+  font-size: 100%;
+  font-family: "微软雅黑";
+  -webkit-touch-callout: none;
+  /*系统默认菜单被禁用*/
+  /* 会取消drag事件 */
+  /*-webkit-user-select:none; webkit浏览器*/
+  /*-khtml-user-select:none; 早期浏览器*/
+  /*-moz-user-select:none;火狐*/
+  /*-ms-user-select:none; IE10*/
+  /*user-select:none;*/ }
+
+*::-webkit-scrollbar {
+  width: 6px !important; }
+
+*::-webkit-scrollbar-button:start:decrement, *::-webkit-scrollbar-button:end:increment {
+  height: 0;
+  background-color: transparent; }
+
+*::-webkit-scrollbar-corner {
+  background-color: transparent; }
+
+*::-webkit-scrollbar-thumb:vertical {
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.2); }
+
+/************
+ * 自定义页面样式
+ ************/
+body {
+  font-size: .875em;
+  line-height: 1.5;
+  color: #333;
+  max-width: 2000px;
+}
+a{
+  color: #333;
+}
+a:link, a:visited{
+  text-decoration: none;
+  color: #333;
+}
+a:hover, a:active{
+  text-decoration: none;
+  color: #333;
+}
+
+header{}
+.header-box{
+  padding: 7px 0 7px 15px;
+  overflow: hidden;
+  height: 38px;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.1);
+}
+header .l{
+  width: 50%;
+  float: left;
+}
+header .logo{
+  float: left;
+}
+header .logo a{
+  display: block;
+  margin-right: .7em;
+  height: 40px;
+  width: 80px;
+  background-image: url(../img/logo.png);
+  background-repeat: no-repeat;
+  background-position: left center
+-webkit-background-size: 80px 40px;
+  background-size: 80px 40px;
+}
+header .l .title{
+  float: right;
+  font-size: 1.5em;
+  line-height: 40px;
+}
+
+header .r{
+  width: 50%;
+  float: right;
+}
+header .r .progress-box{
+  float: left;
+  margin-left: 5em;
+  line-height: 30px;
+  width: 220px;
+}
+header .r .progress-box .label{
+  float: left;
+  margin-top: 10px;
+}
+header .r .progress-box .progress{
+  width: 150px;
+  float: left;
+  margin-top: 8px;
+  margin-left: 5px;
+}
+header .r .progress-box .progress .progress-bar{
+  background-color: #47B15F;
+}
+
+header .r nav{
+  float: right;
+  margin-right: 2em;
+}
+header .r nav li{
+  float: left;
+  margin-left: 20px;
+  height: 40px;
+}
+
+.main{
+
+}
+.main .sidebar{
+  background-color: #E9E9E9;
+  display: flex;
+  height: calc(100vh - 92px);
+  width: 52px;
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+  float: left;
+  position: relative;
+}
+.main .main-nav{
+  float: left;
+  width: 52px;
+  box-sizing: border-box;
+  padding: 0 8px;
+}
+.main .main-nav li{
+  font-size: 12px;
+  width: 36px;
+  text-align: center;
+  margin-top: 10px;
+}
+.main .main-nav li:first-child{
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+.main .main-nav li .min{
+  width: 30px;
+  display: inline-block;
+}
+.main .sub-nav{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 52px;
+  box-sizing: border-box;
+  padding: 0 8px;
+}
+.main .sub-nav li{
+  font-size: 12px;
+  width: 36px;
+
+}
+
+
+.main .page{
+  display: flex;
+  height: calc(100vh - 92px);
+  margin-left: -52px;
+  box-sizing: border-box;
+  padding-left: 52px;
+}
+
+
+
+.footer-box{
+  text-align: center;
+  height: 38px;
+  overflow: hidden;
+  border-top: 1px solid #ddd;
+  line-height: 38px;
+}
+.footer-box .p{
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 62.5em) and (min-width: 34.375em) {
+}
+
+/************
+ * 打印样式
+ ************/
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important; }
+  a,
+  a:visited {
+    text-decoration: underline; }
+  a[href]:after {
+    content: "(" attr(href) ")"; }
+  abbr[title]:after {
+    content: "(" attr(title) ")"; }
+  /*使用#和javascript的超链接不打印href*/
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: ""; }
+  pre,
+  blockquote {
+    border: 1px solid #999999;
+    page-break-inside: avoid;
+    /*opera*/ }
+  thead {
+    display: table-header-group; }
+  tr, img {
+    page-break-inside: avoid; }
+  img {
+    min-width: 100% !important; }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    /*分页底部保留最少行数*/
+    widows: 3;
+    /*分页顶部保留最少行数*/ }
+  h2,
+  h3 {
+    page-break-after: avoid; } }

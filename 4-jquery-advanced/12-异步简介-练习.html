@@ -11,7 +11,7 @@
 
 </ul>
 
-<script type="text/javascript" src="../public/js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="public/jquery.min.js"></script>
 <script>
 //异步
 //  setTimeout(function () {
@@ -19,7 +19,7 @@
 //  }, 0);
 //  console.log('2');
 
-  $.get('../public/api/page.php', {p:1}, function (data) {
+  $.get('public/api/page.php', {p:1}, function (data) {
     var data = JSON.parse(data);
     var list = data.list;
     var html = '';
@@ -33,7 +33,7 @@ console.log('2');
 
 //同步
 //$.ajax({
-//  url:'../public/api/page.php',
+//  url:'public/api/page.php',
 //  data:{p:2},
 //  method:'GET',
 //  async:false,
@@ -42,7 +42,7 @@ console.log('2');
 //  }
 //})
 //console.log('2');
-//  $.get('../public/json/list.json', function (data) {
+//  $.get('public/json/list.json', function (data) {
 //    console.log('我是$.get的回调函数，我也是后边才打印出来的');
 //    console.log('这是我调接口后返回的数据：',data);
 //  });
@@ -51,7 +51,7 @@ console.log('2');
 
 
 //  综合练习1
-//  把course/public/json/list.json这个接口文件拷过来，然后通过这个接口文件获取数据
+//  把courpublic/json/list.json这个接口文件拷过来，然后通过这个接口文件获取数据
 //  把这些数据按照练习7的格式填充到ul里面
     //    综合练习1 每个name对象显示的效果如下，循环加到ul里面
     //    <li>

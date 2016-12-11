@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <link rel="stylesheet" href="public/fullpage/jquery.fullPage.css">
+  <link rel="stylesheet" href="public/fullpage/jquery.fullPage.theme.ppt.black.green.css">
+  <script type="text/javascript" src="public/jquery.min.js"></script>
+  <script type="text/javascript" src="public/fullpage/jquery.fullPage.js"></script>
+  <script>
+    $(function () {
+      $('.ppt').fullpage({});
+    });
+  </script>
+</head>
+<body>
+<div class="ppt">
+  <div class="section">
+    <div class="slide">
+      <h3>Vue Instance(实例对象)</h3>
+    </div>
+    <div class="slide">
+      <h3>学习目标</h3>
+      <ul>
+        <li>Vue实例对象是什么？</li>
+        <li>简单模拟Vue实例对象的创建</li>
+        <li>响应的数据绑定一般情况下的使用条件</li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <h3>Vue实例对象是什么？</h3>
+    <p>var vm = new Vue({ 你的参数 })</p>
+    <p>一个 Vue 实例其实正是一个 MVVM 模式中所描述的 ViewModel，简称vm</p>
+    <p><img src="public/img/vue响应的数据绑定.png" width="50%" alt=""></p>
+  </div>
+  <div class="section">
+    <h3>简单模拟Vue实例对象的创建</h3>
+    <p>3-Vue实例对象-简单模拟Vue实例对象的创建-1.html</p>
+  </div>
+  <div class="section">
+    <h3>响应的数据绑定一般情况下的使用条件</h3>
+    <ul>
+      <li>每个 Vue 实例都会代理其 data 对象里所有的属性。注意只有这些被代理的属性是响应的。</li>
+      <li>如果在实例创建之后添加新的属性到实例上，它不会触发模板更新。</li>
+    </ul>
+  </div>
+
+
+</div>
+</body>
+</html>

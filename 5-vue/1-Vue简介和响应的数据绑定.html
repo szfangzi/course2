@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <link rel="stylesheet" href="public/fullpage/jquery.fullPage.css">
+  <link rel="stylesheet" href="public/fullpage/jquery.fullPage.theme.ppt.black.green.css">
+  <script type="text/javascript" src="public/jquery.min.js"></script>
+  <script type="text/javascript" src="public/fullpage/jquery.fullPage.js"></script>
+  <script>
+    $(function () {
+      $('.ppt').fullpage({});
+    });
+  </script>
+</head>
+<body>
+<div class="ppt">
+  <div class="section">
+    <h3>Vue.js</h3>
+    <p>Vue.js 2.0是2016年10月份发布正式版的，但整个生态圈可能还不够成熟，所以我们现在先学习Vue.js 1.0</p>
+    <p>Vue.js（读音 /vjuː/, 类似于 view） 是一套构建用户界面的 渐进式框架。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用单文件组件和Vue生态系统支持的库开发的复杂单页应用。</p>
+    <ul>
+      <li>何为渐进式？</li>
+      <li>框架中哪些东西属于视图层？</li>
+      <li>何为单文件组件？</li>
+      <li>何为Vue生态系统支持的库？</li>
+      <li>Vue的目标是啥？</li>
+    </ul>
+  </div>
+  <div class="section">
+    <div class="slide">
+      <h3>何为渐进式？</h3>
+      <p>核心功能简单，需要加强功能可以灵活引入Vue的相关库</p>
+    </div>
+    <div class="slide">
+      <h3>框架中哪些东西属于视图层？</h3>
+      <p>比如模板引擎、组件化系统</p>
+    </div>
+    <div class="slide">
+      <h3>何为单文件组件？</h3>
+      <p>组件的html、css、js都写在一个文件里面</p>
+    </div>
+    <div class="slide">
+      <h3>何为Vue生态系统支持的库？</h3>
+      <p>符合Vue.js规范的一些拓展功能的js,比如各种大神写的Vue的路由，Vue的ajax，Vue的UI等等</p>
+    </div>
+  </div>
+  <div class="section">
+    <h3>响应的数据绑定</h3>
+    <p>通俗的讲，就是数据更新后 <i>全自动渲染</i> 到模板！！！ </p>
+    <p><img src="public/img/vue响应的数据绑定.png" width="50%" alt=""></p>
+  </div>
+
+</div>
+</body>
+</html>
+
+

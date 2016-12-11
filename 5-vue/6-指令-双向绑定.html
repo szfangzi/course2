@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <script src="public/vue.js"></script>
+</head>
+<body>
+
+<!--vue模板 v-model双向绑定-->
+<div id="app">
+  <p>{{ message }}</p>
+  <!-- 这是只有表单控件才有的指令：v-model -->
+  <!--数据更新，表单控件自动改变状态，表单控件做出操作，数据也会更新-->
+  <input v-model="message">
+</div>
+
+
+
+<script>
+//  模板渲染
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      message:'Hello Vue.js!'
+    }
+  })
+</script>
+</body>
+</html>

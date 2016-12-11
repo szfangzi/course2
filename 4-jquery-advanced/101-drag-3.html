@@ -34,7 +34,7 @@
       text-shadow: none;
     }
   </style>
-  <script src="../public/js/jquery-1.11.1.js"></script>
+  <script src="public/jquery.min.js"></script>
 </head>
 <body>
 
@@ -49,14 +49,14 @@
 </div>
 
 <!--拖拽样式修复-空白图片-->
-<img src="../public/img/blank.gif" alt="" style="position: fixed;top:0;left: 0;z-index: 0" id="dragMouseImg">
+<img src="public/img/blank.gif" alt="" style="position: fixed;top:0;left: 0;z-index: 0" id="dragMouseImg">
 
 <script type="text/template" id="listTmpl">
 <% for(var i=0;i<list.length;i++){ %>
 <li><%= list[i].name %></li>
 <% } %>
 </script>
-<script src="../public/js/ejs.min.js"></script>
+<script src="public/ejs.min.js"></script>
 <script>
 
   //初始化假数据

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+  var newArr = [{name:"a",isTick:1},{name:"b",isTick:0}].filter(function(n){
+    return n.isTick==0;
+  });
+  console.log(newArr);
+
+  //过滤器原理
+//    function filter(arr, fn) {
+//      var newArr = [];
+//      for (var i = 0; i < arr.length; i++) {
+//        if(fn(arr[i])){
+//          newArr.push(arr[i]);
+//        }
+//      }
+//      return newArr;
+//    }
+//    var newArr = filter([{name:"a",isTick:1},{name:"b",isTick:0}], function(n){
+//        return n.isTick==0;
+//    });
+</script>
+</body>
+</html>
