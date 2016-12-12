@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link rel="stylesheet" href="public/fullpage/jquery.fullPage.css">
+    <link rel="stylesheet" href="public/fullpage/jquery.fullPage.theme.ppt.black.green.css">
+    <script type="text/javascript" src="public/jquery.min.js"></script>
+    <script type="text/javascript" src="public/fullpage/jquery.fullPage.js"></script>
+    <script>
+        $(function(){
+            $('.ppt').fullpage({ });
+        });
+    </script>
+</head>
+<body>
+<div class="ppt">
+    <div class="section">
+        <h3>Window.onload和$(document).ready()的区别</h3>
+    </div>
+    <div class="section">
+      <h3>Window.onload和$(document).ready()的区别</h3>
+      <p>window.onload是在网页中的所有元素(包括元素的关联文件)都完全加载到浏览器之后才执行。
+        Jquery的$(document).ready()则是只要dom加载完毕就会调用，比如整个页面只有一个图片标签，那么图片标签加载完毕了就会调用，即使图片还没加载完毕。
+      </p>
+    </div>
+</div>
+</body>
+</html>
