@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script type="text/javascript" src="public/jquery.min.js"></script>
+<script type="text/javascript" src="public/cookie.js"></script>
+<script>
+//  cookie大概只能存4k，但是后端前端都可以往里面填值
+
+//如果在用cookie之前运行下边代码，那么数组和对象存值取值得时候会自动帮你调用 JSON.stringify JSON.parse
+//$.cookie.json = true;
+//$.cookie('name111', {xxx:1});
+
+
+//  session级别的存值,因为没传时间
+//$.cookie('name', 'ken');
+////expires是存储的天数
+//$.cookie('name1', 'value11', { expires: 7 });
+//
+////删除cookie
+//$.cookie('name', '', { expires: -1 });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+<script>
+  function Vue(options) {
+//    刚开始执行函数的时候this为构造函数为Vue的空对象
+    var data = this.$data = options.data || {};
+    var methods = options.methods || {};
+    for (var k in data) {
+      this[k] = data[k];
+    }
+    for (var k in methods) {
+      this[k] = methods[k];
+    }
+//    通过new出来的对象，构造函数会自动 return this
+  }
+  var data = {a: 1, b: {c: 2}};
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      d1: 1,
+      d2: 2,
+      data: data
+    },
+    methods: {
+      a: function () {
+        console.log('a');
+      },
+      b: function () {
+        console.log('b');
+      }
+    }
+  });
+
+  console.log(vm);
+</script>
+</body>
+</html>

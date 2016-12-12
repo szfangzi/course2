@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <script src="public/vue.js"></script>
+</head>
+<body>
+
+<div id="box">
+  {{msg}}
+</div>
+<script>
+  var vm=new Vue({
+    el:'#box',
+    data:{
+      msg:'well'
+    },
+    created:function(){
+      alert('实例已经创建');
+    },
+    beforeCompile:function(){
+      alert('模板编译之前');
+    },
+    compiled:function(){
+      alert('模板编译之后');
+    },
+    ready:function(){
+      alert('插入到文档中');
+    },
+    beforeDestroy:function(){
+      alert('销毁之前');
+    },
+    destroyed:function(){
+      alert('销毁之后');
+    }
+  });
+
+  /*点击页面销毁vue对象*/
+  document.onclick=function(){
+//    销毁后数据跟模板就不绑定在一起了
+    vm.$destroy();
+  };
+
+//  销毁后这个就不起用了
+vm.msg = 1111;
+</script>
+</body>
+</html>

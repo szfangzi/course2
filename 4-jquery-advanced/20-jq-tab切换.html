@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="public/jquery.min.js"></script>
+</head>
+<body>
+<style>
+.box {
+  width: 200px;
+}
+.box .t{
+  float: left;
+  width: 201px;
+  height: 50px;
+  position: relative;
+}
+.box .t .item{
+  width: 49px;
+  height: 48px;
+  border: 1px solid #aaa;
+  border-right:none;
+  border-bottom:none;
+  float: left;
+  position: relative;
+  z-index: 10;
+}
+.box .t .item.last{
+  border-right: 1px solid #aaa;
+
+}
+.border{
+  display: none;
+}
+.box .border{
+  border: 1px solid orange;
+  border-bottom:1px solid white;
+  display: block;
+  width: 49px;
+  height: 48px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  z-index: 12;
+}
+.box .b{
+  float: left;
+  width: 201px;
+  height: 200px;
+  margin-top: -1px;
+}
+.box .b .content{
+  float: left;
+  width: 199px;
+  height: 200px;
+  display:none;
+}
+.box .b .content.on{
+  display: inline-block;
+  border: 1px solid orange;
+}
+
+
+
+</style>
+<div class="box">
+  <div class="t">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item last">4</div>
+    <div class="border"></div>
+  </div>
+  <div class="b">
+    <div class="content">1</div>
+    <div class="content">2</div>
+    <div class="content">3</div>
+    <div class="content">4</div>
+  </div>
+
+</div>
+<style>
+  .www{
+    height: 300px;
+    overflow: hidden;
+    width: 100px;
+  }
+</style>
+<div class="www">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquam aliquid aut blanditiis debitis ea eum excepturi facilis harum illum iste nisi officiis pariatur perspiciatis quia repellat saepe? Quam, soluta.
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquam aliquid aut blanditiis debitis ea eum excepturi facilis harum illum iste nisi officiis pariatur perspiciatis quia repellat saepe? Quam, soluta.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquam aliquid aut blanditiis debitis ea eum excepturi facilis harum illum iste nisi officiis pariatur perspiciatis quia repellat saepe? Quam, soluta.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquam aliquid aut blanditiis debitis ea eum excepturi facilis harum illum iste nisi officiis pariatur perspiciatis quia repellat saepe? Quam, soluta.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aliquam aliquid aut blanditiis debitis ea eum excepturi facilis harum illum iste nisi officiis pariatur perspiciatis quia repellat saepe? Quam, soluta.
+</div>
+
+<script>
+$('.item').on('mouseenter', function () {
+  var $this = $(this);
+  $('.border').css('left', $this.index()*50+'px');
+  $('.content').removeClass('on');
+  $('.content').eq($this.index()).addClass('on');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>responsive table</title>
+    <style type="text/css">
+        .c0 {
+            width: 600px;
+            height: 500px;
+            background-color:#036663;
+            display: flex;
+
+            /*row是水平模式，column是垂直模式*/
+            flex-flow:row;
+
+
+            /*水平模式-水平居中 垂直模式-垂直居中*/
+            justify-content: center;
+            /*垂直模式-水平居中 水平模式-垂直居中*/
+            align-items:center;
+        }
+        .c0 .item{
+            width: 100px;
+            height: 100px;
+
+        }
+        .c1{
+            background-color: yellow;
+        }
+        .c2{
+            background-color: red;
+        }
+        .c3{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body id="body">
+
+<div class="c0">
+    <!--<div class="c4">-->
+        <div class="item c1">
+            1
+        </div>
+
+        <div class="item c2">
+            2
+        </div>
+
+        <div class="item c3">3</div>
+    <!--</div>-->
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

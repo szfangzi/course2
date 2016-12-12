@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <link rel="stylesheet" href="public/fullpage/jquery.fullPage.css">
+  <link rel="stylesheet" href="public/fullpage/jquery.fullPage.theme.ppt.black.green.css">
+  <script type="text/javascript" src="public/jquery.min.js"></script>
+  <script type="text/javascript" src="public/fullpage/jquery.fullPage.js"></script>
+  <script>
+    $(function () {
+      $('.ppt').fullpage({});
+    });
+  </script>
+</head>
+<body>
+<div class="ppt">
+  <div class="section">
+    <h3>异步简介</h3>
+  </div>
+  <div class="section">
+    <!--<div class="slide">-->
+      <!--<h3>Javascript语言的执行环境是"单线程"（single thread）</h3>-->
+      <!--<p>所谓"单线程"，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。</p>-->
+      <!--<p>那如果我一个任务，比如调服务器的一个请求特别慢，那会导致什么情况呢？</p>-->
+    <!--</div>-->
+    <!--<div class="slide">-->
+      <!--<h3>为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）。</h3>-->
+      <!--<p>刚才所说的那种问题就是采用同步编程导致的</p>-->
+      <!--<p>那异步编程该怎么写呢？</p>-->
+    <!--</div>-->
+    <!--<div class="slide">-->
+      <h3>异步常见的两种情况</h3>
+      <ol>
+        <li>setTimeout()</li>
+        <li>ajax</li>
+      </ol>
+      <p><a href="public/img/async.png" target="_blank">我们来看看图</a> ，再来演示一下吧 12-异步简介-练习.html</p>
+    <!--</div>-->
+  </div>
+  <div class="section">
+    <h3>jq如何请求接口</h3>
+    <ul>
+      <li>请求接口简写(默认异步)：$.get()</li>
+      <li>ajax标准写法(可以选择异步或者同步)：$.ajax()</li>
+    </ul>
+    <p>我们来演示一下吧 12-异步简介-练习.html</p>
+  </div>
+
+</div>
+</body>
+</html>

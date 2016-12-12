@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <script src="public/vue.js"></script>
+</head>
+<body>
+
+<!--vue模板 列表-->
+<div id="app">
+  <ul>
+    <!--过滤器-->
+    <li v-for="todo in todos | filterBy isTick">
+      {{ todo.name }}
+    </li>
+  </ul>
+</div>
+
+<script>
+//  模板渲染
+new Vue({
+  el: '#app',
+  data: {
+    todos: [
+      {name:"a",isTick:0},
+      {name:"b",isTick:1}
+    ]
+  },
+  methods:{
+//    过滤器函数
+    isTick: function (val) {
+      return val.isTick;
+    }
+  }
+});
+
+//  练习 把localStorage练习写好的函数拿来当模板数据，并且用循环指令在页面上显示里面的所有数据
+
+</script>
+</body>
+</html>

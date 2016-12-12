@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <style>
+    *{padding: 0;margin: 0;}
+    ul,ol,li{list-style: none;}
+    .directory{
+      float: left;
+      width: 200px;
+    }
+    .list{
+      float: left;
+      width: 500px;
+      margin-left: 100px;
+    }
+.directory li, .list li{
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  background-color: #00aaee;
+  color: white;
+  line-height: 50px;
+  border: 1px solid #0000FF;
+}
+    .directory li.on{
+      background-color: #c9302c;
+    }
+    .list li{
+      cursor: pointer;
+    }
+    *::selection{
+      text-shadow: none;
+    }
+  </style>
+  <script src="public/jquery.min.js"></script>
+</head>
+<body>
+
+<ul class="directory">
+  <li><a href="#t1">文件夹1 (<b></b>个文件)</a></li>
+  <li><a href="#t2">文件夹2 (<b></b>个文件)</a></li>
+</ul>
+<div class="list">
+  <h1>文件列表</h1>
+  <ul>
+  </ul>
+</div>
+
+<!--拖拽样式修复-空白图片-->
+<img src="public/img/blank.gif" alt="" style="position: fixed;top:0;left: 0;z-index: 0" id="dragMouseImg">
+
+<script type="text/template" id="listTmpl">
+<% for(var i=0;i<list.length;i++){ %>
+<li><%= list[i].name %></li>
+<% } %>
+</script>
+<script src="public/ejs.min.js"></script>
+<script>
+
+//初始化假数据
+var list = [{name:'文件1',type:1},{name:'文件2',type:2},{name:'文件3',type:1},{name:'文件4',type:2},{name:'文件5',type:1}];
+var tmpl = $('#listTmpl').html();
+
+if(location.hash == '' || location.hash == '#t1'){
+  render(1);
+}else if(location.hash == '#t2'){
+  render(2);
+}
+renderTypeLen();
+
+//渲染列表模板
+function render(type) {
+  var newList = list.filter(function (v) {
+    return v.type == type;
+  });
+  var html = ejs.render(tmpl, {list:newList});
+  $('.list ul').html(html);
+}
+//计算出列表type1和type2的数量并填写到页面上
+function renderTypeLen() {
+  var t1Len = list.filter(function (v) {
+    return v.type == 1;
+  }).length;
+  var t2Len = list.filter(function (v) {
+    return v.type == 2;
+  }).length;
+  $('.directory li b').eq(0).html(t1Len);
+  $('.directory li b').eq(1).html(t2Len);
+}
+$(window).on('hashchange', function () {
+  if(location.hash == '#t1'){
+    render(1);
+  }else if(location.hash == '#t2'){
+    render(2);
+  }
+
+});
+
+
+//拖拽开始
+$('.list').on('dragstart', 'li', function (e) {
+  console.log('dragstart');
+
+//  拖拽结束
+}).on('dragend', 'li', function (e) {
+  console.log('dragend');
+});
+
+//拖拽到目标元素
+$('.directory').on('dragover', 'li', function (e) {
+  e.preventDefault();
+  console.log('dragover');
+
+//  拖拽到目标元素鼠标放手后
+}).on('drop', 'li', function (e) {
+  console.log('drop');
+});
+</script>
+</body>
+</html>

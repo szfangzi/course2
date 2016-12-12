@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <script src="public/vue.js"></script>
+  <style>
+    .okstyle{
+      color: #00aaee;
+    }
+    .nostyle{
+      font-size: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<!--vue模板 列表-->
+<div id="app">
+  <h1 v-bind:class="{okstyle:no,nostyle:no}">ok</h1>
+</div>
+
+<script>
+//  模板渲染
+var vm = new Vue({
+  el: '#app',
+  data: {
+    ok:true,
+    no:false
+  }
+});
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="public/jquery.min.js"></script>
+</head>
+<body>
+<h1>jq事件</h1>
+<button id="on-btn">用jq绑定了事件的按钮</button>
+<script>
+  $('#on-btn').on('click', function (e) {
+    alert('正在执行点击后的回调函数!');
+  });
+</script>
+<input id="text-input" type="text" placeholder="请填写你的名字">
+<script>
+  $('#text-input').on('keydown', function (e) {
+    alert('正在执行键盘事件后的回调函数! 我按下的按钮编号为'+ e.keyCode+' 我文本框的值是：'+$('#text-input').val());
+  });
+</script>
+</body>
+</html>

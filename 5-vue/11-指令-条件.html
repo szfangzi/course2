@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <script src="public/vue.js"></script>
+</head>
+<body>
+
+<!--vue模板 列表-->
+<div id="app">
+  <h1 v-if="ok">ok</h1>
+  <h1 v-else>no</h1>
+  <h1 v-show="ok">v-show-ok</h1>
+  <h1 v-else>v-show-no</h1>
+</div>
+
+<script>
+//  模板渲染
+var vm = new Vue({
+  el: '#app',
+  data: {
+    ok:false
+  }
+});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div id="container" style="width: 100%;height:600px;"></div>
+
+<script src="public/jquery.min.js"></script>
+<script src="public/echarts.min.js"></script>
+<script type="text/javascript">
+
+//  通过拿到 ../public/json/echart.json的数据初始化这个图表
+
+$.get('../public/json/echart.json', function(data){
+
+//  相应数据的标题
+  var chartTitle = [];
+//  每个标题的相应数据
+  var chartData = [];
+
+  for (var i = 0; i < data.length; i++) {
+    chartTitle.push(data[i].name);
+  }
+  uni(chartTitle);
+  for (var i = 0; i < chartTitle.length; i++) {
+    chartData.push({
+      name: chartTitle[i],
+      type: 'line',
+      stack: '总量',
+      areaStyle: {normal: {}},
+      data: []
+    });
+    data.sort(function(a,b){
+      if(a.day> b.day){
+        return 1;
+      }else{
+        return -1;
+      }
+    });
+    for (var j = 0; j < data.length; j++) {
+      if (chartTitle[i] == data[j].name){
+        chartData[i].data.push(data[j].data);
+      }
+    }
+
+  }
+//
+//  console.log(chartTitle);
+//
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var option = {
+        title: {
+//            标题文本
+            text: '堆叠区域图'
+        },
+        tooltip : {
+//            通过坐标显示提示信息
+            trigger: ''
+        },
+        legend: {
+//            图表头标识  每个数据名字要与图表数据相应的name一样
+            data:chartTitle
+        },
+        grid: {
+//            表格距离左边 右边 下边 上边的空白
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true //这个不用管,加上即可
+        },
+        xAxis : [
+            {
+                type : 'category',
+//                图表X轴左右留白
+                boundaryGap : false,
+//                X轴值
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+//        图表数据数组
+        series :chartData
+    };
+
+    myChart.setOption(option);
+
+});
+
+function uni(arr) {
+  for(var i=0; i<=arr.length-2; i++){
+    for(var j=i+1; j<=arr.length-1; j++){
+      if(arr[i] === arr[j]) {
+        arr.splice(j,1);
+        j--;
+      }
+
+    }
+  }
+}
+</script>
+</body>
+</html>
+
+

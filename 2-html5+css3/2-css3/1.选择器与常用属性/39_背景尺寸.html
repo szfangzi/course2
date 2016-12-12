@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body{ background:#ccc;}
+.box{
+    float: left;border:10px solid #000;
+    width: 150px; padding: 0;margin: 0}
+    .box li{
+        width: 22px;
+        height: 22px;
+      /*svg图片默认是100%显示整一个图片的*/
+        background:url(img/channels.svg) no-repeat;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        float: left;
+
+        /*背景图片放大的倍数 第一个参数是宽度 第二个是高度*/
+        background-size:300%;
+    }
+.box li.a{
+/*背景图片定位用百分比的话，元素的高宽就能随意增减且背景能如常显示*/
+    background-position: 78% 9%;
+}
+.box li.b{
+    background-position: 78% 35%;
+}
+.box li.c{
+    background-position: 78% 62%;
+}
+.box li.d{
+    background-position: 78% 89%;
+}
+</style>
+</head>
+<body>
+<!--svg图片是一种矢量的互联网图片格式，是通过一定的算法用代码画出来的，放大缩小都是不会失真的，不过比起位图绘制成本高，所以一般应用于小图标-->
+<!--svg图片的引用方式-->
+<!--<embed src="img/channels.svg" width="300" height="100"></embed>-->
+<ul class="box">
+    <li class="a"></li>
+    <li class="b"></li>
+    <li class="c"></li>
+    <li class="d"></li>
+</ul>
+</body>
+</html>

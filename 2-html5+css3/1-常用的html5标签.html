@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <script type="text/javascript" src="public/jquery.min.js"></script>
+</head>
+<body>
+<!--表单提交，action是提交地址  method是请求方法 get和post 控件用name属性来作为传参的键-->
+<form action="http://www.baidu.com" method="GET">
+  <input type="text" id="text"><span class="error-tip" style="display: none;">请输入正确的邮件格式把！</span>
+  <input type="text" id="text1">
+  <input type="text" id="text2">
+  <input type="text" id="text3">
+  <!--type=submit是提交表单的按钮-->
+  <button type="submit" id="submit">提交</button>
+</form>
+
+<script>
+
+//  常用html5标签
+//  音频audio 获取音频视频元素.play()可以播放
+//  视频video
+//  头部header
+//  导航nav
+//  侧栏aside
+//  底部footer
+//  主体main
+//  文章article
+//  块section
+
+//  canvas画图(echart就是canvas做的)
+
+//  正则校验
+  $('#text').on('blur', function () {
+    if(/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test($(this).val())){
+      $('.error-tip').hide(400);
+    }else{
+      $('.error-tip').show(400);
+    }
+  });
+  $('#submit').on('click', function (e) {
+//    阻止默认事件
+    e.preventDefault();
+//    阻止冒泡
+    e.stopPropagation();
+  });
+
+//html5
+//css3
+//  this
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<!--vue模板 绑定事件-->
+<div id="app">
+  <p>{{ message }}</p>
+  <!--点击事件-->
+  <button v-on:click="test(2)">click</button>
+  <!--按键事件,并且判断是否回车-->
+  <input type="text" v-model="message" v-on:keyup.enter="msgAlert">
+</div>
+
+
+
+<script src="public/vue.js"></script>
+
+<script>
+//  模板渲染
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    test: function (id) {
+      console.log(id);
+    },
+    msgAlert: function () {
+      alert(this.message);
+    }
+  }
+})
+</script>
+</body>
+</html>

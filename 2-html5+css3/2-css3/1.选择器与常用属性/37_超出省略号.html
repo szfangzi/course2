@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+    /*传统一行省略号*/
+/*p{*/
+/*width:300px;border:1px solid #000;font:14px/30px "宋体";*/
+
+/*white-space:nowrap; overflow:hidden; text-overflow:ellipsis;*/
+/*}*/
+    /*css3新方法，多行文本省略号，部分浏览器不兼容 */
+    p{
+        width:300px;border:1px solid #000;font:14px/30px "宋体";
+
+        overflow:hidden;-webkit-box-orient: vertical;  -webkit-line-clamp: 3;display: -webkit-box;
+    }
+
+</style>
+</head>
+<body>
+<p>我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。我是前端。</p>
+</body>
+</html>
