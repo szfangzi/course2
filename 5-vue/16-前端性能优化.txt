@@ -1,0 +1,6 @@
+1.做动画的时候优先使用css3动画，而不是js动画，特别在移动端的时候
+2.合并压缩js和css
+3.css精灵图
+4.js放在最后边可以加快页面的加载
+5.缓存，变化很少的数据可以设置客户端缓存(localstorge,sessionStorge
+),全国城市信息列表，这个就没必要每次都调接口了，可以存放在localstorge或者sessionStorge里面
