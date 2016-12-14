@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+
+<style>
+  .maskWrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: none; }
+  .maskWrapper .popupWrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%; }
+  .maskWrapper .popupWrapper #login {
+    position: absolute;
+    left: -300px;
+    top: -150px;
+    width: 600px;
+    height: 300px;
+    background-color: white;
+    z-index: 100;
+    border-radius: 20px;
+    padding: 0 30px;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 10px #aaa;}
+  .maskWrapper .popupWrapper #login .close {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    font-size: 26px;
+    font-family: cursive;
+    color: #ccc; }
+  .maskWrapper .popupWrapper #login .close:hover {
+    color: #999;
+    text-decoration: none; }
+  .maskWrapper .popupWrapper #login .field {
+    margin-bottom: 15px; }
+  .maskWrapper .popupWrapper #login .field .text-input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0 10px; }
+  .maskWrapper .popupWrapper #login .ctrl {
+    position: relative;
+    top: 10px;
+    text-align: center; }
+  .maskWrapper .popupWrapper #login .btn-login {
+    color: #fff;
+    padding: .8em 1.55em;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 1.25;
+    background: -webkit-linear-gradient(top, #fa9334, #f4712b);
+    background: linear-gradient(to bottom, #fa9334, #f4712b);
+    border: 0.08em solid rgba(0, 0, 0, 0.15);
+    opacity: 1;
+    border-radius: .5em;
+    text-shadow: 0 0.08em 0.08em rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.08em 0.1em rgba(0, 0, 0, 0.1);
+    text-decoration: none; }
+  .maskWrapper .mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1); }
+</style>
+<div class="maskWrapper" id="popup-wrapper">
+  <div class="popupWrapper">
+    <div id="login" class="popup-box">
+      <h2><span class="popup-title">Login</span> <a href="javascript:;" class="close">x</a></h2>
+      <div class="popup-content">
+        <form id="customer_login">
+          <ul>
+            <li class="field">
+              <input type="text" name="username" id="username" class="text-input" value="" placeholder="请输入你的账号" >
+            </li>
+            <li class="field js-pass">
+              <input type="password" name="password" id="password" class="text-input" value="" placeholder="请输入你的密码">
+            </li>
+          </ul>
+          <div class="ctrl">
+            <a class="btn btn-login" href="javascript:;">
+              登录
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="mask"></div>
+</div>
+
+
+<div id="tanchuang"></div>
+
+<script type="text/javascript" src="public/jquery.min.js"></script>
+<!--弹窗组件-->
+<script type="text/javascript" src="public/modal.js"></script>
+<script>
+
+//组件函数介绍
+//$.fn.tanchuang = function (options) {
+//  console.log(this);
+//  var default_options = {
+//    width:600,
+//    height:300
+//  };
+//  var options = $.extend({},default_options,options);
+//};
+//var x = $('#tanchuang').tanchuang({
+//  width:1000
+//});
+
+  //弹窗
+//  var loginPopup = $('#popup-wrapper').modal({
+//    width:1000,
+//    height:600,
+//    openCallBack:function(){
+//      console.log('弹窗后执行的函数！');
+//    },
+//    closeCallBack:function(){
+//
+//    }
+//  });
+//  loginPopup.open();
+
+
+
+//模拟jquery组件化系统
+//var obj = function (selector) {
+//  var x = document.querySelector(selector);
+//  for (var k in obj.fn) {
+//    x[k] = obj.fn[k];
+//  }
+//  return x;
+//};
+//obj.fn = {};
+
+
+//
+//var obj = function (selector) {
+//  var dom = document.querySelector(selector);
+//  for (var k in obj.fn) {
+//    dom[k] = obj.fn[k];
+//  }
+//  return dom;
+//};
+//obj.fn = {};
+//obj.fn.aaa = function (options) {
+//  console.log('插件正在调用中！');
+//  console.log(this);
+//};
+//
+//var x = obj('#tanchuang').aaa({
+//  width:1000
+//});
+
+
+</script>
+</body>
+</html>

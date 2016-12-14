@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script type="text/javascript" src="public/jquery.min.js"></script>
+<script>
+//  什么是跨域？
+//  答：即不同域名之间的接口调用，比如我百度访问你谷歌的接口，ajax本身是不可以跨域的，需要借助别的方法比如jsonp。
+//
+//  Jquery如何实现跨域？
+//  答：通过jsonp的方法
+  $.ajax({
+    type:"get",
+    url:"请求地址",/*url写异域的请求地址*/
+    dataType:"jsonp",/*加上datatype*/
+    jsonpCallback:"cb",/*设置一个回调函数，名字随便取，和后端接口返回的函数里的名字相同就行*/
+    success:function(){
+
+    }
+  });
+
+
+</script>
+</body>
+</html>

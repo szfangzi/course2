@@ -1,5 +1,6 @@
 $(function () {
 
+  //路由事件
   $(window).on('hashchange', function () {
     $('.sidebar li').removeClass('active');
     hashFn();
@@ -10,6 +11,7 @@ $(function () {
     console.log($(this).parents('tr'));
   });
 
+  //路由切换页面函数
   function hashFn() {
     var hash = location.hash;
     if(hash == '#plist' || hash == ''){
@@ -21,6 +23,7 @@ $(function () {
     }
   }
 
+  //主体内容渲染
   function render(tmplId, data){
     var tmpl = $(tmplId).html();
     var html = ejs.render(tmpl, data);

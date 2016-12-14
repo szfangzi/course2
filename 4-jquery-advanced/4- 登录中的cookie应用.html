@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script type="text/javascript" src="public/jquery.min.js"></script>
+<script type="text/javascript" src="public/cookie.js"></script>
+<script>
+
+//  cookie,localstorge有什么区别
+//  核心区别：
+//  Cookie大小只有4k，但是前后端都可以存取，存取时间需要通过参数设置
+//  Localstorge大小有5m，但是只有前端才可以存取，是永久存储
+//  Sessionstorge跟Localstorge类似，区别就是页面关闭后数据就会丢失
+
+
+//如果在用cookie之前运行下边代码，那么数组和对象存值取值得时候会自动帮你调用 JSON.stringify JSON.parse
+//$.cookie.json = true;
+//$.cookie('name111', {xxx:1});
+
+
+//  session级别的存值,因为没传时间
+//$.cookie('name', 'ken');
+////expires是存储的天数
+//$.cookie('name1', 'value11', { expires: 7 });
+//
+////删除cookie
+//$.cookie('name', '', { expires: -1 });
+
+</script>
+</body>
+</html>
