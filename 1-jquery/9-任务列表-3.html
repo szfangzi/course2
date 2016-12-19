@@ -22,7 +22,21 @@
 </ul>
 <script>
 //  练习5 功能跟6-任务列表2一样，但是数据是要通过localStorage来存取, id用uuid来生成
+//  生成唯一的id
+function uuid() {
+  var i, random;
+  var uuid = '';
 
+  for (i = 0; i < 32; i++) {
+    random = Math.random() * 16 | 0;
+    if (i === 8 || i === 12 || i === 16 || i === 20) {
+      uuid += '-';
+    }
+    uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+  }
+
+  return uuid;
+}
 
 
 

@@ -13,12 +13,16 @@
 </ul>
 <script>
   $('button').on('click', function (e) {
+
 //    这里的this是你刚才点击的按钮的dom元素，我们可以通过$(this)来转化成jq元素
 //    parent()就是找到指定元素的父元素
 //    remove()就是删除元素
 //    find()是找到子元素
 //    html()是获取元素的内容，相当于innerHTML
+//    siblings()是获取兄弟元素
     var name = $(this).parent().find('span').html();
+//    var name = $(this).siblings('span').html();
+    console.log(name);
     $(this).parent().remove();
   });
 //$('ul').on('click', 'button', function () {
