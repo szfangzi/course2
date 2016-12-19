@@ -17,13 +17,11 @@
 <body>
 <div class="ppt">
     <div class="section">
-        <h3>Window.onload和$(document).ready()的区别</h3>
-    </div>
-    <div class="section">
-      <h3>Window.onload和$(document).ready()的区别</h3>
-      <p>window.onload是在网页中的所有元素(包括元素的关联文件)都完全加载到浏览器之后才执行。
-        Jquery的$(document).ready()则是只要dom加载完毕就会调用，比如整个页面只有一个图片标签，那么图片标签加载完毕了就会调用，即使图片还没加载完毕。
-      </p>
+      <h3>$(document).ready()和Window.onload的区别</h3>
+      <ul>
+        <li>Jquery的$(document).ready()是只要dom加载完毕就会调用。</li>
+        <li>window.onload则是除了要dom加载完毕以外，还需要包括图片、音频、视频等等相关资源加载完毕才会执行load事件绑定的函数</li>
+      </ul>
     </div>
 </div>
 </body>
