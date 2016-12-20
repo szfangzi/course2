@@ -26,12 +26,11 @@
 <script type="text/javascript" src="public/ejs.min.js"></script>
 <script>
 
-  $.get('public/json/list.json', function (data) {
-    var list = data;
+  var list = [{name:"电脑",lock:1},{name:"手机",lock:0},{name:"平板",lock:1}];
     var tmpl = $('#forTmpl').html();
     var html = ejs.render(tmpl, {data:list});
     $('#list').html(html);
-  });
+
 
 </script>
 
