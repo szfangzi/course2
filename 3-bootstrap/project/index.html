@@ -1,68 +1,193 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap 101 Template</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
 
-  <!-- Bootstrap -->
-  <link href="public/bootstrap/css/bootstrap.css" rel="stylesheet">
-  <link href="public/main.css" rel="stylesheet">
-
-
+    <!-- Bootstrap -->
+    <link href="public/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="public/main.css" rel="stylesheet">
+ 
 </head>
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="javascript:;">电商管理后台</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:;">电商管理后台</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:;">Dashboard</a></li>
+                <li><a href="javascript:;">Settings</a></li>
+                <li><a href="javascript:;">Profile</a></li>
+                <li><a href="javascript:;">Help</a></li>
+            </ul>
+        </div>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="javascript:;">Dashboard</a></li>
-        <li><a href="javascript:;">Settings</a></li>
-        <li><a href="javascript:;">Profile</a></li>
-        <li><a href="javascript:;">Help</a></li>
-      </ul>
-    </div>
-  </div>
 </nav>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li class="manage active"><a href="#manage">商品管理</a></li>
-        <li class="add"><a href="#add">新增商品</a></li>
-      </ul>
-      <ul class="nav nav-sidebar">
-        <li><a href="javascript:;">订单管理</a></li>
-      </ul>
-      <ul class="nav nav-sidebar">
-        <li><a href="javascript:;">用户管理</a></li>
-        <li><a href="javascript:;">新增用户</a></li>
-      </ul>
-      <ul class="nav nav-sidebar">
-        <li><a href="javascript:;">图表</a></li>
-      </ul>
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="manage active"><a href="#manage">商品管理</a></li>
+                <li class="add"><a href="#add">新增商品</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="javascript:;">订单管理</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="javascript:;">用户管理</a></li>
+                <li><a href="javascript:;">新增用户</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li><a href="javascript:;">图表</a></li>
+            </ul>
+        </div>
+        
+        <!--商品添加-->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main addp">
+            <h2 class="sub-header">
+             	 商品添加
+            </h2>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="inputName" class="col-sm-2 control-label">商品名称</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputName">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputDetail" class="col-sm-2 control-label">商品详情</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" rows="3" id="inputDetail"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputUp" class="col-sm-2 control-label">是否上架</label>
+              <div class="col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="" id="inputUp">
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPrice" class="col-sm-2 control-label">价格</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" id="inputPrice">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <a class="btn btn-default save" href="javascript:;">确认保存</a>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <!--商品管理-->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main plist">
+            <h2 class="sub-header">
+            	  商品管理
+            	  
+              <div class="btn-group btn-group-sm pull-right" role="group" aria-label="...">
+                <button type="button" class="btn btn-default up-lot">批量上架</button>
+                <button type="button" class="btn btn-default down-lot">批量下架</button>
+                <button type="button" class="btn btn-default del-lot">批量删除</button>
+              </div>
+            </h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" class="checkall"></th>
+                        <th>商品ID</th>
+                        <th>商品名称</th>
+                        <th>上下架状态</th>
+                        <th>价格(元)</th>
+                        <th>创建日期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                   
+                    </tbody>
+                </table>
+
+              <nav>
+                <ul class="pagination pull-right pagelist">
+                  <!--<li>
+                    <a href="#" aria-label="Previous" class="prevP">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li>
+                    <a href="#" aria-label="Next" class="nextP">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>-->
+                </ul>
+              </nav>
+            </div>
+        </div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main edit">
+	            <h2 class="sub-header">
+	             	 商品编辑
+	            </h2>
+		          <form class="form-horizontal">
+		            <div class="form-group">
+		              <label for="inputName" class="col-sm-2 control-label">商品名称</label>
+		              <div class="col-sm-10">
+		                <input type="email" class="form-control" id="inputName" value="">
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label for="inputDetail" class="col-sm-2 control-label">商品详情</label>
+		              <div class="col-sm-10">
+		                <textarea class="form-control" rows="3" id="inputDetail"></textarea>
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label for="inputUp" class="col-sm-2 control-label">是否上架</label>
+		              <div class="col-sm-10">
+		                <div class="checkbox">
+		                  <label>
+		                    <input type="checkbox" value="" id="inputUp">
+		                  </label>
+		                </div>
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <label for="inputPrice" class="col-sm-2 control-label">价格</label>
+		              <div class="col-sm-10">
+		                <input type="number" class="form-control" id="inputPrice" >
+		              </div>
+		            </div>
+		            <div class="form-group">
+		              <div class="col-sm-offset-2 col-sm-10">
+		                <a class="btn btn-default save" href="javascript:;">确认保存</a>
+		              </div>
+		            </div>
+		          </form>
+        	</div>
     </div>
-
-
-    <!--商品管理-->
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main plist">
-
-    </div>
-
-
-  </div>
 </div>
 
 
@@ -72,138 +197,88 @@
 <script src="public/bootstrap/js/bootstrap.min.js"></script>
 <script src="public/main.js"></script>
 <script src="public/ejs.min.js"></script>
-<script type="text/template" id="render">
-  <h2 class="sub-header">
-    商品管理
-
-    <div class="btn-group btn-group-sm pull-right" role="group" aria-label="...">
-      <button type="button" class="btn btn-default up-lot">批量上架</button>
-      <button type="button" class="btn btn-default down-lot">批量下架</button>
-      <button type="button" class="btn btn-default del-lot">批量删除</button>
-    </div>
-  </h2>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th><input type="checkbox" class="checkall"></th>
-        <th>商品ID</th>
-        <th>商品名称</th>
-        <th>上下架状态</th>
-        <th>价格(元)</th>
-        <th>创建日期</th>
-        <th>操作</th>
-      </tr>
-      </thead>
-      <tbody>
-
-
-      <%for (var i = 0; i < arr.length; i++) {
-      var date = new Date(arr[i].date)
-      date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
-      %>
-
-      <tr class="productlist"><td><input type="checkbox" ></td>
-        <td class="productId"><%=arr[i].id%></td>
-        <td class="name"><%=arr[i].productName%></td>
-        <td class="sold"><%if (arr[i].productUp){%>已上架<%}else{%>已下架<%}%></td>
-        <td class="price"><%=arr[i].productPrice%></td>
-        <td class="time"><%=date%></td>
-        <td><div class="btn-group btn-group-sm" role="group" aria-label="...">
-          <button type="button" class="btn btn-default btn-edit">编辑</button>
-          <%if (arr[i].productUp){%>
-          <button type="button" class="btn btn-default btn-down">下架</button>
-          <%}else{%>
-          <button type="button" class="btn btn-default btn-up">上架</button>
-          <%}%>
-          <button type="button" class="btn btn-default btn-del">删除</button>
-        </div></td></tr>
-
-      <%}%>
-      </tbody>
-    </table>
-
-    <nav>
-      <ul class="pagination pull-right pagelist">
-
-
-        <li style=" <%if(current <= 1){%> visibility: hidden<%}%>;"><a href="#" aria-label="Previous" class="prevP"><span aria-hidden="true">&laquo;</span></a></li>
-
-        <%for(var i=1;i<=total;i++){%>
-        <li <%if(current == i){%> class="active" <%}%>class="p"><a href="javascript:;"><%=i%></a></li>
-        <%}%>
-
-        <li style=" <%if(current >= total){%> visibility: hidden<%}%>;"><a href="#" aria-label="Next" class="nextP"><span aria-hidden="true">&raquo;</span></a></li>
-      </ul>
-    </nav>
-  </div>
-</script>
-<script type="text/template" id="addproduct">
-  <h2 class="sub-header" >
-    <%if(type == "#add"){%>商品添加 <%}else{%> 商品编辑 <%}%>
-  </h2>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="inputName" class="col-sm-2 control-label">商品名称</label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputName" value="<%=product.productName%>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputDetail" class="col-sm-2 control-label">商品详情</label>
-      <div class="col-sm-10">
-        <textarea class="form-control" rows="3" id="inputDetail"><%=product.productDetail%></textarea>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputUp" class="col-sm-2 control-label">是否上架</label>
-      <div class="col-sm-10">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="" id="inputUp" <%if(product.productUp){%>checked <%}%> >
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPrice" class="col-sm-2 control-label">价格</label>
-      <div class="col-sm-10">
-        <input type="number" class="form-control" id="inputPrice" value="<%=product.productPrice%>">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <a class="btn btn-default save" href="javascript:;">确认保存</a>
-      </div>
-    </div>
-  </form>
-</script>
-
-
 <script type="text/javascript">
 
-  var pageNum = 5;
-  var current = 1;
-  var arr = get('list');
-  var totalItem = arr.length;
-  var total = Math.ceil(totalItem/5);
 
-  function page(){
+var pageNum = 5;
+var current = 1;
+var arr = get('list');
+var totalItem = arr.length;
+var total = Math.ceil(totalItem/5);
 
+function page(){
+	var pagehtml ='';
+	if(current > 1){
+		pagehtml += '<li><a href="#" aria-label="Previous" class="prevP"><span aria-hidden="true">&laquo;</span></a></li>'
+	}
+	
+	for(var i=1;i<=total;i++){
+		if(current == i){
+			pagehtml += '<li class="active p"><a href="javascript:;">'+i+'</a></li>'
+		}else{
+			pagehtml += '<li class="p"><a href="javascript:;">'+i+'</a></li>'
+		}      
+	}
+	
+	if (current <total) {
+		pagehtml += '<li><a href="#" aria-label="Next" class="nextP"><span aria-hidden="true">&raquo;</span></a></li>'
+	} 
+	$('.pagelist').html(pagehtml)
+}
 
-    var tmp = $('#listPage').html();
-    var pagehtml = ejs.render(tmp, {total:total,current:current});
-    $('.pagelist').html(pagehtml)
-  }
+//function test(num){
+//	for(var i=0;i<num;i++){
+//		arr.push({productName:i,productDetail:i,productPrice:i,productUp:0,id:uuid(),date:new Date().getTime()});
+//	}
+//	save('list',arr);
+//}
 
-  //function test(num){
-  //	for(var i=0;i<num;i++){
-  //		arr.push({productName:i,productDetail:i,productPrice:i,productUp:0,id:uuid(),date:new Date().getTime()});
-  //	}
-  //	save('list',arr);
-  //}
+listRender(arr);
+//显示页面内容的函数
+function listRender(arr){
+  var start = (current-1)*pageNum;
+  var end = start+pageNum;
+  arr = arr.slice(start,end);
 
+  var list = ''
+   
+    for (var i = 0; i < arr.length; i++) {
+      var date = new Date(arr[i].date);
+      date = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+      if (arr[i].productUp) {
 
+        list += '<tr class="productlist">'+'<td><input type="checkbox" "checked">'+'</td>'+
+                      '<td class="productId">'+arr[i].id+'</td>'+
+                      '<td class="name">'+arr[i].productName+'</td>'+
+                      '<td class="sold">已上架</td>'+
+                      '<td class="price">'+arr[i].productPrice+'</td>'+
+                      '<td class="time">'+date+'</td>'+
+                      '<td>'+'<div class="btn-group btn-group-sm" role="group" aria-label="...">'+
+                         '<button type="button" class="btn btn-default btn-edit">编辑</button>'+
+                          '<button type="button" class="btn btn-default btn-down">下架</button>'+
+                          '<button type="button" class="btn btn-default btn-del">删除</button>'+
+                        '</div>'+'</td>'+'</tr>'
+
+      }else{
+
+         list += '<tr class="productlist">'+'<td><input type="checkbox" >'+'</td>'+
+                      '<td class="productId">'+arr[i].id+'</td>'+
+                      '<td class="name">'+arr[i].productName+'</td>'+
+                      '<td class="sold">已下架</td>'+
+                      '<td class="price">'+arr[i].productPrice+'</td>'+
+                      '<td class="time">'+date+'</td>'+
+                      '<td>'+'<div class="btn-group btn-group-sm" role="group" aria-label="...">'+
+                         '<button type="button" class="btn btn-default btn-edit">编辑</button>'+
+                          '<button type="button" class="btn btn-default btn-up">上架</button>'+
+                          '<button type="button" class="btn btn-default btn-del">删除</button>'+
+                        '</div>'+'</td>'+'</tr>'
+        
+      }
+    }
+    $('tbody').html(list);
+    page();
+}
+ 
 
 
   $('.save').on('click',function(){
@@ -211,7 +286,7 @@
     var productDetail = $('#inputDetail').val().trim();
     var productPrice = $('#inputPrice').val().trim();
     var productUp = $('#inputUp').prop('checked');
-
+    
     if (productName && productDetail && productPrice) {
       arr.push({productName:productName,productDetail:productDetail,productPrice:productPrice,productUp:productUp,id:uuid(),date:new Date().getTime()});
       $('.form-control').val('');
@@ -226,153 +301,158 @@
     }
 
   });
-
+  
   //翻页
-  $('.main').on('click','.p',function(){
-    console.log(1)
-    var num = $(this).find('a').html();
-    current = parseInt(num);
-    listRender(arr);
-    $('body').animate({scrollTop:0}, 500);//自动返回页面最顶端
+  $('.pagelist').on('click','.p',function(){
+  	console.log(1)
+  	var num = $(this).find('a').html();
+  	current = parseInt(num);
+  	listRender(arr);
+  	$('body').animate({scrollTop:0}, 500);//自动返回页面最顶端
   }).on('click','.prevP',function(){
-    current--;
-    listRender(arr);
-    $('body').animate({scrollTop:0}, 500);//自动返回页面最顶端
+  	current--;
+  	listRender(arr);
+  	$('body').animate({scrollTop:0}, 500);//自动返回页面最顶端
   }).on('click','.nextP',function(){
-    current++;
-    listRender(arr);
-    $('body').animate({scrollTop:0}, 500);//自动返回页面最顶端
+  	current++;
+  	listRender(arr);
+  	$('body').animate({scrollTop:0}, 500);//自动返回页面最顶端
   })
 
 
-  //显示页面的函数
-  function listRender(arr){
-    var start = (current-1)*pageNum;
-    var end = start+pageNum;
-    arr = arr.slice(start,end);
-    var list = ''
 
-    var tmp = $('#render').html();
-    var html = ejs.render(tmp, {arr:arr,total:total,current:current});
-    $('.main').html(html);
-
+//删除单个
+$('tbody').on('click','.btn-del',function(){
+  var id = $(this).parents('tr').find('.productId').html();
+ 
+  for (var i = 0; i < arr.length; i++) {
+    if (id == arr[i].id) {
+      arr.splice(i,1);
+      $(this).parents('tr').remove();
+      save('list',arr); 
+      listRender(arr);
+      break;
+    }
   }
+})
 
 
-  //删除单个
-  $('.main').on('click','.btn-del',function(){
-    var id = $(this).parents('tr').find('.productId').html();
+//编辑
 
-    for (var i = 0; i < arr.length; i++) {
-      if (id == arr[i].id) {
-        arr.splice(i,1);
-        $(this).parents('tr').remove();
-        save('list',arr);
-        listRender(arr);
-        break;
+$('tbody').on('click','.btn-edit',function(){
+	location.hash = "#edit"
+	//日期
+	var id = $(this).parents('tr').find('.productId').html();
+	for(var i=0;i<arr.length;i++){
+		if (id==arr[i].id) {
+			
+			$('.edit').show();
+			$('.edit').html();
+			var data = arr[i];
+			$('.edit #inputName').val(data.productName);
+			$('.edit #inputDetail').html(data.productDetail);
+			if (data.productUp) {
+				$('.edit #inputUp').prop('checked',true)
+			}else{
+				$('.edit #inputUp').prop('checked',false)
+			}
+			
+			$('.edit #inputPrice').val(data.productPrice);
+			$('.plist').hide();
+			$('.addp').hide();
+	    	
+		}
+	}
+	
+})
+
+//单个上下架
+$('tbody').on('click','.btn-down',function(){
+  var id = $(this).parents('tr').find('.productId').html();
+//var $btnUp = $(this).parents('tr').find('.btn-up'); 
+//var $btndown = $(this).parents('tr').find('.btn-down') 
+  var $sold = $(this).parents('tr').find('.sold')
+  
+  for (var i = 0; i < arr.length; i++) {
+   if (id==arr[i].id) {
+     if (arr[i].productUp) {
+
+      $sold.html('已下架');
+          
+      arr[i].productUp = false;
+      } else {
+        $sold .html('已上架');
+        arr[i].productUp = true;
+              
       }
-    }
-  })
+      save('list',arr); 
+      listRender(arr);
+      break;
+   }
+  }
+  
+}).on('click','.btn-up',function(){
+  var id = $(this).parents('tr').find('.productId').html();
+//var $btnUp = $(this).parents('tr').find('.btn-up'); 
+//var $btndown = $(this).parents('tr').find('.btn-down') 
+  var $sold = $(this).parents('tr').find('.sold')
+  
+  for (var i = 0; i < arr.length; i++) {
+   if (id==arr[i].id) {
+     if (arr[i].productUp) {
 
-  var product = {};
-  //编辑
-  $('.main').on('click','.btn-edit',function(){
-    location.hash = "#edit";
-    //日期
-    var id = $(this).parents('tr').find('.productId').html();
-    for(var i=0;i<arr.length;i++){
-      if (id==arr[i].id) {
-        for(var k in arr[i]){
-          product[k] = arr[i][k];
-        }
+      $sold.html('已下架');
+      
+      arr[i].productUp = false;
+      } else {
+        $sold .html('已上架');
+        arr[i].productUp = true;
+
       }
-    }
+      save('list',arr); 
+      listRender(arr);
+      break;
+   }
+  }
+})
 
-  })
-
-  //单个上下架
-  $('.main').on('click','.btn-down',function(){
-    var id = $(this).parents('tr').find('.productId').html();
-    var $sold = $(this).parents('tr').find('.sold')
-
-    for (var i = 0; i < arr.length; i++) {
-      if (id==arr[i].id) {
-        if (arr[i].productUp) {
-
-          $sold.html('已下架');
-
-          arr[i].productUp = false;
-        } else {
-          $sold .html('已上架');
-          arr[i].productUp = true;
-
-        }
-        save('list',arr);
-        listRender(arr);
-        break;
-      }
-    }
-
-  }).on('click','.btn-up',function(){
-    var id = $(this).parents('tr').find('.productId').html();
-    var $sold = $(this).parents('tr').find('.sold')
-
-    for (var i = 0; i < arr.length; i++) {
-      if (id==arr[i].id) {
-        if (arr[i].productUp) {
-
-          $sold.html('已下架');
-
-          arr[i].productUp = false;
-        } else {
-          $sold .html('已上架');
-          arr[i].productUp = true;
-
-        }
-        save('list',arr);
-        listRender(arr);
-        break;
-      }
-    }
-  })
-
-  //全选
-  $('.main').on('click','.checkall',function(){
-
-    var $this = $(this).prop('checked')
-
-    if ($this) {
-      $('.productlist input').prop('checked', 'checked')
-    }else{
-      $('.productlist input').prop('checked', '')
-    }
-
-  })
+//全选
+$('.checkall').on('click',function(){
+  
+  var $this = $(this).prop('checked')
+ 
+  if ($this) {
+    $('.productlist input').prop('checked', 'checked')
+  }else{
+    $('.productlist input').prop('checked', '')
+  }
+  
+})
 
 
-  //批量删除(一个一个删除)
+//批量删除(一个一个删除)
 
-  $('.main').on('click','.del-lot',function(){
+$('.del-lot').on('click',function(){
     var checks = $('.productlist input:checked');
     for (var i = 0;i< checks.length;i++) {
       var id = checks.eq(i).parents('tr').find('.productId').html();
       for (var j = 0; j < arr.length;j++) {
-        if(id == arr[j].id){
-          arr.splice(j, 1);
-          break;
-        }
+       if(id == arr[j].id){
+        arr.splice(j, 1);
+        break;
+       }
       };
     };
-    // save('list',arr);
+    // save('list',arr); 
     listRender(arr);
-  })
+})
 
 
-  //批量上架
+//批量上架
 
-  $('.main').on('click','.up-lot',function(){
-    var checks = $('.productlist input:checked');
-
+$('.up-lot').on('click',function(){
+  var checks = $('.productlist input:checked');
+    
     for (var i = 0; i < checks.length; i++) {
       var id = checks.eq(i).parents('tr').find('.productId').html();
 
@@ -380,26 +460,26 @@
       for (var j = 0; j < arr.length; j++) {
         if (id == arr[j].id) {
           if (arr[j].productUp==false) {
-            $('.checkall').prop('checked','');
+			$('.checkall').prop('checked','');
             $sold .html('已上架');
             arr[j].productUp = true;
-          }
-          save('list',arr);
+          } 
+          save('list',arr); 
           listRender(arr);
-
+          
         }
-
+        
       }
     }
 
-  })
+})
 
 
-  //批量下架
+//批量下架
 
-  $('.main').on('click','.down-lot',function(){
-    var checks = $('.productlist input:checked');
-
+$('.down-lot').on('click',function(){
+  var checks = $('.productlist input:checked');
+    
     for (var i = 0; i < checks.length; i++) {
       var id = checks.eq(i).parents('tr').find('.productId').html();
 
@@ -407,56 +487,46 @@
       for (var j = 0; j < arr.length; j++) {
         if (id == arr[j].id) {
           if (arr[j].productUp) {
-            $('.checkall').prop('checked','');
-            $sold.html('已下架');
+			$('.checkall').prop('checked','');
+            $sold.html('已下架');                
             arr[j].productUp = false;
-          }
-          save('list',arr);
+          } 
+          save('list',arr); 
           listRender(arr);
-
+          
         }
-
+        
       }
     }
 
-  })
+})
 
 
-  //路由跳转显示页面
-  $(window).on('hashchange',function(){
-    hashFn();
-  })
+//路由跳转显示页面
+   $(window).on('hashchange',function(){
+  	hashFn();
+   })
 
-  hashFn();
-  function hashFn(){
-    var hash = location.hash;
-    $('.sidebar li').removeClass('active');
+	hashFn();
+	function hashFn(){
+		var hash = location.hash;
+	  	$('.sidebar li').removeClass('active');
+	  	$('.main').hide()
+	     if (hash == '#manage' || hash == '') {	     	
+	       $('.plist').show();	      
+	       $('.manage').addClass('active')
+	       
+	     } else if(hash == '#add'){
+	    	$('.addp').show();	    	
+	    	$('.add').addClass('active')
+	    	
+	     }else if (hash == '#edit') {	      	
+	    	$('.edit').show();
+	    	
+	      }
+	}
 
-    if (hash == '#manage' || hash == '') {
-      listRender(arr);
-      $('.manage').addClass('active')
-
-    } else if(hash == '#add'){
-      product = {
-        productName:'',
-        productDetail:'',
-        productPrice:'',
-        productUp:''
-      };
-      var tmp = $('#addproduct').html();
-      var html = ejs.render(tmp,{type:hash,product:product});
-      $('.main').html(html);
-      $('.add').addClass('active')
-
-    }else if (hash == '#edit') {
-
-      var tmp = $('#addproduct').html();
-      var html = ejs.render(tmp,{type:hash,product:product});
-      $('.main').html(html);
-    }
-  }
-
-  function get(key){
+ function get(key){
     var val = localStorage.getItem(key);
     if (val) {
       val = JSON.parse(val);
@@ -467,26 +537,25 @@
   };
 
 
-  function save(key,val){
+function save(key,val){
     var val = JSON.stringify(val);
     localStorage.setItem(key,val);
   };
-
-  function uuid() {
-    var i, random;
-    var uuid = '';
-
-    for (i = 0; i < 32; i++) {
+  
+function uuid() {
+  var i, random;
+  var uuid = '';
+  
+  for (i = 0; i < 32; i++) {
       random = Math.random() * 16 | 0;
       if (i === 8 || i === 12 || i === 16 || i === 20) {
         uuid += '-';
       }
       uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
-    }
-
-    return uuid;
+  }
+  
+  return uuid;
   };
 </script>
 </body>
 </html>
-
