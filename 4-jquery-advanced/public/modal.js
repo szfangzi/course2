@@ -19,16 +19,18 @@ $.fn.modal = function (options) {
     self.init = function () {
 
 //自定义参数覆盖默认参数
-        self.options = $.extend({}, defaults, options);
+        self.opt = $.extend({}, defaults, options);
+      //初始化样式
         self.initStyle();
+      //绑定事件
         self.bindEvent();
         return self;
     };
 
   //初始化样式
     self.initStyle = function () {
-        self.$popupBox.css({width:self.options.width, height:self.options.height, left:-self.options.width/2, top:-self.options.height/2});
-        self.$popupTitle.html(self.options.title);
+        self.$popupBox.css({width:self.opt.width, height:self.opt.height, left:-self.opt.width/2, top:-self.opt.height/2});
+        self.$popupTitle.html(self.opt.title);
     };
 
   //绑定事件
@@ -41,13 +43,13 @@ $.fn.modal = function (options) {
   //弹出窗口
     self.open = function () {
         self.show();
-        self.options.openCallBack && self.options.openCallBack();
+        self.opt.openCallBack && self.opt.openCallBack();
     };
 
 //关闭窗口
     self.close = function () {
         self.hide();
-        self.options.closeCallBack && self.options.closeCallBack();
+        self.opt.closeCallBack && self.opt.closeCallBack();
     };
 
   //执行初始化插件的函数 并返回该函数的返回值

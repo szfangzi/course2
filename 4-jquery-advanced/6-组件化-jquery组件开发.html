@@ -115,29 +115,42 @@
 
 //组件函数介绍
 //$.fn.tanchuang = function (options) {
-//  console.log(this);
 //  var default_options = {
 //    width:600,
 //    height:300
 //  };
-//  var options = $.extend({},default_options,options);
+//  var opt = $.extend({},default_options,options);
 //};
-//var x = $('#tanchuang').tanchuang({
+//
+//var x = $('#popup-wrapper').tanchuang({
 //  width:1000
 //});
 
+
+//$.fn.tanchuang = function (options) {
+//  var self = this;
+//  self.init = function () {
+//    console.log('弹窗初始化！');
+//  };
+//  self.open = function () {
+//    console.log('弹窗了！');
+//  };
+//  return self;
+//};
+
+
   //弹窗
-//  var loginPopup = $('#popup-wrapper').modal({
-//    width:1000,
-//    height:600,
-//    openCallBack:function(){
-//      console.log('弹窗后执行的函数！');
-//    },
-//    closeCallBack:function(){
-//
-//    }
-//  });
-//  loginPopup.open();
+  var loginPopup = $('#popup-wrapper').modal({
+    width:1000,
+    height:600,
+    openCallBack:function(){
+      console.log('弹窗后执行的函数！');
+    },
+    closeCallBack:function(){
+
+    }
+  });
+  loginPopup.open();
 
 
 
