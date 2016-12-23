@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+  function Vue(options) {
+    var data = options.data;
+    for (var k in data) {
+      this[k] = data[k];
+    }
+  }
+  var vm = new Vue({
+    el:'#app',
+    data:{
+      d1:1,
+      d2:2
+    },
+    methods:{
+      a: function () {
+        console.log('a');
+      },
+      b: function () {
+        console.log('b');
+      }
+    }
+  });
+//  console.log(vm);
+
+
+//  for (let i = 0; i < 10; i++) {
+//    console.log(i);
+//  }
+
+</script>
+</body>
+</html>

@@ -9,11 +9,11 @@
 <script>
   var obj = {};
   var val = 'ken';
-  obj.name = val;
+//  obj.name = val;
   // defineProperty es5(2009年发布的js版本)的一个方法，只支持IE8以上版本，可以定义对象属性获取值和赋值时候的回调方法，取值得时候调用get回调函数，赋值的时候调用set这个回调函数
   Object.defineProperty(obj, 'name', {
     get: function () {
-      return val
+      return val;
     },
     set: function (newVal) {
       console.log('监听到你更新数据了！'+newVal);
@@ -28,7 +28,7 @@
 //    刚开始执行函数的时候this为构造函数为Vue的空对象
     var data = this.$data = options.data || {};
     var methods = options.methods || {};
-    for (let k in data) {
+    for (var k in data) {
 //      let是es6的一个关键字，用来声明具有块级作用域的变量
       let val = data[k];
       Object.defineProperty(this, k, {

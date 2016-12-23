@@ -173,15 +173,30 @@
 //  }
 //  return dom;
 //};
-//obj.fn = {};
-//obj.fn.aaa = function (options) {
-//  console.log('插件正在调用中！');
-//  console.log(this);
-//};
-//
-//var x = obj('#tanchuang').aaa({
-//  width:1000
-//});
+
+
+var $ = function (selector) {
+  var dom = document.querySelector(selector);
+  for (var k in $.fn) {
+    dom[k]=$.fn[k]
+  }
+
+  return dom;
+};
+$.fn = {};
+$.fn.aaa = function (options) {
+  console.log(options);
+  console.log(this);
+};
+$.fn.bbb = function (options) {
+  console.log(options);
+  console.log(this);
+};
+//var x = $('#tanchuang');
+var x = $('#tanchuang').aaa({
+  width:1000
+});
+
 
 
 </script>
