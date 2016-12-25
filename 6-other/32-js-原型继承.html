@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>无标题文档</title>
+
+</head>
+<body>
+
+<script>
+//  保存整个公司的员工信息
+
+//function Company() {
+//  this.employees = [];
+//}
+//Company.prototype.addSalary = function (employee) {
+//  for (var i = 0; i < ees.length; i++) {
+//    if(ees[i].id == employee.id){
+//      employee.salary *= 1.5;
+//      break;
+//    }
+//  }
+//};
+//Company.prototype.joinCompany = function (employee) {
+//  var ees = this.employees;
+//  var flag = true;
+//  for (var i = 0; i < ees.length; i++) {
+//    if(ees[i].id == employee.id){
+//      flag = false;
+//      break;
+//    }
+//  }
+//  if(flag){
+//    ees.push(employee);
+//  }else{
+//    alert('此员工已在本公司，请勿重复添加！');
+//  }
+//
+//};
+//Company.prototype.leaveCompany = function (employee) {
+//  var ees = this.employees;
+//  var flag = true;
+//  for (var i = 0; i < ees.length; i++) {
+//    if(ees[i].id == employee.id){
+//      flag = false;
+//      ees.splice(i, 1);
+//      break;
+//    }
+//  }
+//  if(flag){
+//    alert('此员工不在本公司！');
+//  }
+//
+//};
+
+//原型继承
+//员工类
+function Employee(info) {
+  this.name = info.name || '无名氏';
+  this.salary = info.salary || 0;
+  this.id = uuid();
+
+  //生成唯一ID
+  function uuid() {
+    var i, random;
+    var uuid = '';
+
+    for (i = 0; i < 32; i++) {
+      random = Math.random() * 16 | 0;
+      if (i === 8 || i === 12 || i === 16 || i === 20) {
+        uuid += '-';
+      }
+      uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+    }
+
+    return uuid;
+  }
+
+}
+//员工都可以申请离职
+Employee.prototype.wantLeave = function () {
+  console.log(this.name + '要申请离职！');
+}
+
+//研发岗位类
+function T(info) {
+//  技术类型
+  Employee.call(this, info);
+  this.techType =  info.techType || '实习';
+}
+T.prototype.wantLeave = function () {
+  console.log('T重写了wantLeave');
+}
+//销售岗位类
+function S(info) {
+//  佣金
+  Employee.call(this, info);
+  this.commission = info.commission || 0.05;
+}
+
+//模拟继承
+function extend(child, parent) {
+  var c = child.prototype;
+  var p = parent.prototype;
+  for (var k in p) {
+//  通过hasOwnProperty，父原型的属性不会覆盖子原型
+    if(!c.hasOwnProperty(k)){
+      c[k] = p[k];
+    }
+  }
+// 怕万一 子无法访问父原型的属性和方法了，所以给个入口能访问父原型
+  c.uber = p;
+}
+
+extend(T, Employee);
+extend(S, Employee);
+
+var fe1 = new T({
+  name:'小明',
+  salary:10000,
+  techType:'前端'
+});
+var s1 = new S({
+  name:'小冰',
+  salary:5000,
+  commission:0.1
+});
+console.log(fe1);
+console.log(s1);
+
+
+</script>
+
+
+</body>
+</html>

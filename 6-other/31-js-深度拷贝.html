@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>无标题文档</title>
+
+</head>
+<body>
+
+<script>
+
+//深度拷贝
+var p = {
+  a:1,
+  b:1,
+  c:{
+    e:{
+      f:1
+    }
+  },
+  fn1: function () {
+    console.log('fn1');
+  },
+  fn2: function () {
+    console.log('fn2');
+  }
+};
+var c = {};
+function deepcopy(c, p){
+  for(var k in p){
+    if(typeof p[k] == 'object'){
+      c[k] = p[k].constructor == Array ? [] : {};
+      arguments.callee(c[k], p[k]);
+    }else{
+      c[k] = p[k];
+    }
+  }
+}
+deepcopy(c,p);
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
