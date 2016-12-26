@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="public/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <!--把数据list绑定到组件里面的data-->
+  <node v-bind:data="list" ></node>
+</div>
+
+<script>
+//  把常用的模板做成单独的组件,然后到处都可以调用
+//组件必须要在vm实例对象之前就定义好!!!
+  Vue.component('node', {
+    template:'<div v-for="item in data" class="node">{{item.name}}</div>',
+    props:['data'],
+//    组件的方法(比如过滤器,比如事件绑定的方法)
+    methods:{
+
+    }
+  });
+  var vm = new Vue({
+    el:'#app',
+    data:{
+      list:[{name:'苹果'},{name:'三星'}]
+    }
+  });
+
+//  项目:把之前smash网站做的分页改用Vue组件来做
+</script>
+</body>
+</html>
