@@ -27,27 +27,28 @@ var Util = (function () {
       }
       return c;
     },
+    //分析递归函数，先分析函数本身，再分析递归后的情况
     nodeRecursion: function (nodes, pid) {
-      //result负责存储节点父id等于pid的元素, 即当前pid的子元素数组
-      var result = [], tmp;
+      //result负责存储节点父id等于pid的元素, 即当前pid的所有子元素
+      var result = [], tmp = [];
       for (var i in nodes) {
         //判断节点的父id等于pid
         if (nodes[i].pid === pid) {
-          //匹配的话就拷贝这个节点为obj
+          //匹配的话就拷贝这个节点为obj，这样可以不破坏原来的nodes节点数组
           var obj = Util.deepCopy(nodes[i], {});
           //传入该节点的id作为pid调用节点递归函数,返回该节点的子元素数组
-          //tmp = arguments.callee(nodes, nodes[i].id);
-          ////该节点如果有子元素那么就把子元素数组添加到该节点的childs属性
-          //if (tmp.length > 0) {
-          //  obj.childs = tmp;
-          //}else{
-          //  obj.childs = "";
-          //}
+          tmp = arguments.callee(nodes, nodes[i].id);
+          //该节点如果有子元素那么就把子元素数组添加到该节点的childs属性
+          if (tmp.length > 0) {
+            obj.childs = tmp;
+          }else{
+            obj.childs = "";
+          }
           //result负责存储节点父id等于pid的元素, 即当前pid的子元素数组
           result.push(obj);
         }
       }
-      //返回当前pid的子元素数组
+      //返回当前pid的所有子元素
       return result;
     },
     store: function (name, data) {
