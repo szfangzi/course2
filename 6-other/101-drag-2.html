@@ -120,7 +120,7 @@ $('.directory').on('dragover', 'li', function (e) {
   var $this = $(this);
   //  拖拽获取 文件名 数据
   var name = e.originalEvent.dataTransfer.getData('name');
-
+  console.log('我拖拽了'+name+'进去了');
 });
 </script>
 </body>
