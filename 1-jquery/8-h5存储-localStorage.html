@@ -32,8 +32,13 @@ function save(key, val){
   //  练习2 写一个函数，功能是返回localStorage中指定key的值
 function get(key){
   var val = localStorage.getItem(key);
-  val = JSON.parse(val);
-  return val;
+  if(val){
+    val = JSON.parse(val);
+    return val;
+  }else{
+    return [];
+  }
+
 }
 
   //  arguments是啥？
