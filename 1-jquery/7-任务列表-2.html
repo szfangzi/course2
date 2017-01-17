@@ -10,6 +10,11 @@
 <ul>
 
 </ul>
+<span class="unf-len">还剩下<b></b>个未完成的任务</span>
+<a href="javascript:;" id="all-btn">所有任务</a>
+<a href="javascript:;" id="unf-btn">未完成的任务</a>
+<a href="javascript:;" id="f-btn">已完成的任务</a>
+<a href="javascript:;" id="del-all-btn">删除所有已完成的任务</a>
 
 <script type="text/javascript" src="public/jquery.min.js"></script>
 <script>
@@ -33,14 +38,45 @@
       arr = JSON.parse(localStorage.getItem('arr'));
     }
 
-    for (var i = 0; i < arr.length; i++) {
-      if(arr[i].isTick==1){
-        $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox" checked><span>'+arr[i].name+'</span></li>');
-      }else{
-        $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox"><span>'+arr[i].name+'</span></li>');
-      }
+    render(arr);
 
+//    渲染列表的函数
+    function render(arr) {
+      $('ul').html('');
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i].isTick){
+          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox" checked><span>'+arr[i].name+'</span><button>删除</button></li>');
+        }else{
+          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox"><span>'+arr[i].name+'</span><button>删除</button></li>');
+        }
+      }
     }
+
+//    显示所有任务
+    $('#all-btn').on('click', function () {
+      render(arr);
+    });
+//    未完成任务
+    $('#unf-btn').on('click', function () {
+      var tmp = [];
+      for (var i = 0; i < arr.length; i++) {
+        if(!arr[i].isTick){
+          tmp.push(arr[i]);
+        }
+      }
+      render(tmp);
+    });
+//    已完成任务
+    $('#f-btn').on('click', function () {
+      var tmp = [];
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i].isTick){
+          tmp.push(arr[i]);
+        }
+      }
+      render(tmp);
+    });
+
 
   $('input').on('keydown', function (e) {
     var str = $(this).val().trim();
@@ -52,10 +88,35 @@
       };
       arr.push(obj);
       localStorage.setItem('arr', JSON.stringify(arr));
-      $('ul').append('<li tid="'+obj.id+'"><input type="checkbox"><span>'+obj.name+'</span></li>');
+      $('ul').append('<li tid="'+obj.id+'"><input type="checkbox"><span>'+obj.name+'</span><button>删除</button></li>');
     }
   });
 
+    $('ul').on('click','button', function (e) {
+      var li = $(this).parent();
+      li.remove();
+      var id = li.attr('tid');
+      for (var i = 0; i < arr.length; i++) {
+        if(id == arr[i].id){
+          arr.splice(i, 1);
+          localStorage.setItem('arr', JSON.stringify(arr));
+          break;
+        }
+      }
+    });
+
+    $('ul').on('click', 'input[type=checkbox]', function (e) {
+      var li = $(this).parent();
+      var id = li.attr('tid');
+      var isTick = $(this).prop('checked');
+      for (var i = 0; i < arr.length; i++) {
+        if(id == arr[i].id){
+          arr[i].isTick = isTick;
+          localStorage.setItem('arr', JSON.stringify(arr));
+          break;
+        }
+      }
+    });
 
     function uuid() {
       var i, random;
