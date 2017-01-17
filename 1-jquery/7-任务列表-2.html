@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+  <style>
+    li input[type=text]{
+      display: none;
+    }
+    li.edit input[type=text]{
+      display: inline-block;
+    }
+    li.edit span{
+      display: none;
+    }
+  </style>
 </head>
 <body>
 <h1>任务列表</h1>
@@ -45,9 +56,9 @@
       $('ul').html('');
       for (var i = 0; i < arr.length; i++) {
         if(arr[i].isTick){
-          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox" checked><span>'+arr[i].name+'</span><button>删除</button></li>');
+          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox" checked><span>'+arr[i].name+'</span><input type="text"><button>删除</button></li>');
         }else{
-          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox"><span>'+arr[i].name+'</span><button>删除</button></li>');
+          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox"><span>'+arr[i].name+'</span><input type="text"><button>删除</button></li>');
         }
       }
     }
@@ -88,7 +99,7 @@
       };
       arr.push(obj);
       localStorage.setItem('arr', JSON.stringify(arr));
-      $('ul').append('<li tid="'+obj.id+'"><input type="checkbox"><span>'+obj.name+'</span><button>删除</button></li>');
+      $('ul').append('<li tid="'+obj.id+'"><input type="checkbox"><span>'+obj.name+'</span><input type="text"><button>删除</button></li>');
     }
   });
 
@@ -117,6 +128,27 @@
         }
       }
     });
+    $('ul').on('dblclick', 'li span', function (e) {
+      var li = $(this).parent();
+      li.addClass('edit');
+      $(this).siblings('input[type=text]').val($(this).html());
+
+    });
+    $('ul').on('blur', 'li input[type=text]', function (e) {
+      var li = $(this).parent();
+      var id = li.attr('tid');
+      var val = $(this).val();
+      for (var i = 0; i < arr.length; i++) {
+        if(id==arr[i].id){
+          arr[i].name = val;
+          render(arr);
+          localStorage.setItem('arr', JSON.stringify(arr));
+          break;
+        }
+      }
+
+    });
+
 
     function uuid() {
       var i, random;
