@@ -13,28 +13,32 @@
 
 <script type="text/javascript" src="public/jquery.min.js"></script>
 <script>
+// document.getElementById('ul').onclick = function() {
+//   console.log(1);
+// }
+// console.log(2);
 //异步
-//  setTimeout(function () {
-//    console.log('1');
-//  }, 0);
-//  console.log('2');
+ // setTimeout(function () {
+ //   console.log('1');
+ // }, 0);
+ // console.log('2');
 //
-//  $.get('public/api/page.php', {p:2}, function (data) {
+//  $.get('public/api/page.php', {p:1}, function (data) {
 //    console.log(JSON.parse(data));
 //  });
-//console.log('2');
+// console.log('2');
 
 //同步
-$.ajax({
-  url:'public/api/page.php',
-  data:{p:2},
-  method:'GET',
-  async:false,
-  success: function (data) {
-    console.log(JSON.parse(data));
-  }
-})
-console.log('2');
+// $.ajax({
+//   url:'public/api/page.php',
+//   data:{p:2},
+//   method:'GET',
+//   async:false,
+//   success: function (data) {
+//     console.log(JSON.parse(data));
+//   }
+// })
+// console.log('2');
 
 
 //var start = Date.now();
@@ -56,7 +60,11 @@ console.log('2');
     //    <p>我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串</p>
     //    </li>
 
-
+    $.get('public/api/page.php', {p:1}, function (data) {
+        var obj = JSON.parse(data);
+        var arr = obj.list;
+        "<li><span>name:</span><span></span><p>我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串</p></li>"
+    });
 
 
     //    综合练习2 smash项目 分页 搜索 登录
