@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+  <meta charset="UTF-8">
+  <title></title>
 </head>
+
 <body>
 
 
-<script type="text/javascript" src="public/jquery.min.js"></script>
-<script>
-
-//  什么是跨域？
-//  答：即不同服务器地址不同端口之间的接口调用，比如我百度访问你谷歌的接口，ajax本身是不可以跨域的，需要借助别的方法比如jsonp。
-//
-//  Jquery如何实现跨域？
-//  答：通过jsonp的方法
-//其中http://192.168.4.110:3000/data是接口地址,jsonp的话还需要一个参数 callback=?
-//后端的接口在course/nodejs/express/jsonp.js
-$.getJSON('http://192.168.4.110:3000/data?callback=?', function (data) {
-  console.log(data);
-});
+  <script type="text/javascript" src="public/jquery.min.js"></script>
+  <script>
+    //  什么是跨域？
+    //  答：浏览器同源策略保证了WEB环境的安全性。同源策略是说，在a.com域名下通过ajax或者XmlHttpRequest等方式访问b.com的资源时，是不被允许的。
+    // a.com域名下通过ajax等方式访问b.com就是跨域请求
+    //
+    //  Jquery如何实现跨域？
+    //  答：通过jsonp的方法
+    //其中http://192.168.4.110:3000/jsonp是接口地址, jsonpCallback是指定的回调函数
+    //后端的接口在jsonp-api/jsonp.js
 
 
-</script>
+
+    $.ajax({
+      url:'http://192.168.4.110:3000/jsonp?callback=jsonpCallback',
+      dataType:'jsonp',
+      method:'GET',
+      success:function(rs) {
+
+      }
+    });
+    function jsonpCallback(result) {
+      console.log(result);
+    }
+
+  </script>
 </body>
+
 </html>

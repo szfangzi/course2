@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+  <style>
+    li input[type=text]{
+      display: none;
+    }
+    li.edit input[type=text]{
+      display: inline-block;
+    }
+    li.edit span{
+      display: none;
+    }
+  </style>
 </head>
 <body>
 <h1>任务列表</h1>
@@ -10,6 +21,11 @@
 <ul>
 
 </ul>
+<span class="unf-len">还剩下<b></b>个未完成的任务</span>
+<a href="javascript:;" id="all-btn">所有任务</a>
+<a href="javascript:;" id="unf-btn">未完成的任务</a>
+<a href="javascript:;" id="f-btn">已完成的任务</a>
+<a href="javascript:;" id="del-all-btn">删除所有已完成的任务</a>
 
 <script type="text/javascript" src="public/jquery.min.js"></script>
 <script>
@@ -38,16 +54,45 @@
       arr = JSON.parse(localStorage.getItem('arr'));
     }
 
-//    循环arr渲染任务列表
-    for (var i = 0; i < arr.length; i++) {
-      if(arr[i].isTick==1){
-        $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox" checked><span>'+arr[i].name+'</span></li>');
-      }else{
-        $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox"><span>'+arr[i].name+'</span></li>');
+//    渲染列表的函数
+    function render(arr) {
+      $('ul').html('');
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i].isTick){
+          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox" checked><span>'+arr[i].name+'</span><input type="text"><button>删除</button></li>');
+        }else{
+          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox"><span>'+arr[i].name+'</span><input type="text"><button>删除</button></li>');
+        }
       }
-
     }
 
+
+//    显示所有任务
+    $('#all-btn').on('click', function () {
+      render(arr);
+    });
+//    未完成任务
+    $('#unf-btn').on('click', function () {
+      var tmp = [];
+      for (var i = 0; i < arr.length; i++) {
+        if(!arr[i].isTick){
+          tmp.push(arr[i]);
+        }
+      }
+      render(tmp);
+    });
+//    已完成任务
+    $('#f-btn').on('click', function () {
+      var tmp = [];
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i].isTick){
+          tmp.push(arr[i]);
+        }
+      }
+      render(tmp);
+    });
+
+>>>>>>> 235a1a9dabcae7fbab949cfa78a53ffeabb1daa4
 
   $('input').on('keydown', function (e) {
     var str = $(this).val().trim();
@@ -63,11 +108,61 @@
       arr.push(obj);
 //      把新数组存到localstorge，下次刷新页面后即可拿到最新数据
       localStorage.setItem('arr', JSON.stringify(arr));
-      $('ul').append('<li tid="'+obj.id+'"><input type="checkbox"><span>'+obj.name+'</span></li>');
+      $('ul').append('<li tid="'+obj.id+'"><input type="checkbox"><span>'+obj.name+'</span><input type="text"><button>删除</button></li>');
     }
   });
 
+<<<<<<< HEAD
 //生成唯一id的函数
+=======
+    $('ul').on('click','button', function (e) {
+      var li = $(this).parent();
+      li.remove();
+      var id = li.attr('tid');
+      for (var i = 0; i < arr.length; i++) {
+        if(id == arr[i].id){
+          arr.splice(i, 1);
+          localStorage.setItem('arr', JSON.stringify(arr));
+          break;
+        }
+      }
+    });
+
+    $('ul').on('click', 'input[type=checkbox]', function (e) {
+      var li = $(this).parent();
+      var id = li.attr('tid');
+      var isTick = $(this).prop('checked');
+      for (var i = 0; i < arr.length; i++) {
+        if(id == arr[i].id){
+          arr[i].isTick = isTick;
+          localStorage.setItem('arr', JSON.stringify(arr));
+          break;
+        }
+      }
+    });
+    $('ul').on('dblclick', 'li span', function (e) {
+      var li = $(this).parent();
+      li.addClass('edit');
+      $(this).siblings('input[type=text]').val($(this).html());
+
+    });
+    $('ul').on('blur', 'li input[type=text]', function (e) {
+      var li = $(this).parent();
+      var id = li.attr('tid');
+      var val = $(this).val();
+      for (var i = 0; i < arr.length; i++) {
+        if(id==arr[i].id){
+          arr[i].name = val;
+          render(arr);
+          localStorage.setItem('arr', JSON.stringify(arr));
+          break;
+        }
+      }
+
+    });
+
+
+>>>>>>> 235a1a9dabcae7fbab949cfa78a53ffeabb1daa4
     function uuid() {
       var i, random;
       var uuid = '';

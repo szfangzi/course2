@@ -25,9 +25,12 @@
     console.log(name);
     $(this).parent().remove();
   });
+
+//  $('ul')是委托对象，button是事件源，这样就可以动态绑定后来加上的按钮事件
 //$('ul').on('click', 'button', function () {
 //  $(this).parent('li').remove();
 //});
+//
 //$('ul').append($('<li>4<button>删除</button></li>'));
 ////  按钮4能删除吗？
 //
