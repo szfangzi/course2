@@ -29,6 +29,10 @@ app.get('/jsonp',function(req,res,next){
   res.jsonp({status:'你成功调用jsonp的接口了！'});
 });
 
+app.get('/jsonp2',function(req,res,next){
+  res.send('jsonpCallback('+JSON.stringify({status:"你成功调用jsonp的接口了！"})+')');
+});
+
 app.get('/json',function(req,res,next){
   res.json({status:'json'});
 });
