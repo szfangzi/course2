@@ -23,9 +23,10 @@
  // }, 0);
  // console.log('2');
 //
-//  $.get('public/api/page.php', {p:1}, function (data) {
-//    console.log(JSON.parse(data));
-//  });
+ $.get('public/api/page.php', {p:2}, function (data) {
+   var obj = JSON.parse(data);
+   console.log(obj);
+ });
 // console.log('2');
 
 //同步
@@ -59,12 +60,6 @@
     //    <span>name:</span><span>“数据里面的name值”</span>
     //    <p>我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串</p>
     //    </li>
-
-    $.get('public/api/page.php', {p:1}, function (data) {
-        var obj = JSON.parse(data);
-        var arr = obj.list;
-        "<li><span>name:</span><span></span><p>我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串我是一段字符串</p></li>"
-    });
 
 
     //    综合练习2 smash项目 分页 搜索 登录
