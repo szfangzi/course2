@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title></title>
-  <style>
-    li input[type=text]{
-      display: none;
+    <style>
+    li input[type=text] {
+        display: none;
     }
-    li.edit input[type=text]{
-      display: inline-block;
+    
+    li.edit input[type=text] {
+        display: inline-block;
     }
-    li.edit span{
-      display: none;
+    
+    li.edit span {
+        display: none;
     }
-  </style>
+    </style>
 </head>
+
 <body>
-<h1>任务列表</h1>
-<input type="text" placeholder="请填写你的任务">
-<ul>
-
-</ul>
-<span class="unf-len">还剩下<b></b>个未完成的任务</span>
-<a href="javascript:;" id="all-btn">所有任务</a>
-<a href="javascript:;" id="unf-btn">未完成的任务</a>
-<a href="javascript:;" id="f-btn">已完成的任务</a>
-<a href="javascript:;" id="del-all-btn">删除所有已完成的任务</a>
-
-<script type="text/javascript" src="public/jquery.min.js"></script>
-<script>
+    <h1>任务列表</h1>
+    <input type="text" placeholder="请填写你的任务">
+    <ul>
+    </ul>
+    <span class="unf-len">还剩下<b></b>个未完成的任务</span>
+    <a href="javascript:;" id="all-btn">所有任务</a>
+    <a href="javascript:;" id="unf-btn">未完成的任务</a>
+    <a href="javascript:;" id="f-btn">已完成的任务</a>
+    <a href="javascript:;" id="del-all-btn">删除所有已完成的任务</a>
+    <script type="text/javascript" src="public/jquery.min.js"></script>
+    <script>
     //    通过数据填充页面
-//    var arr = [
-//        {"id":1,"name":"学前端","isTick":1},
-//        {"id":2,"name":"学后端","isTick":0},
-//      {"id":3,"name":"学测试","isTick":1}
-//    ];
+    //    var arr = [
+    //        {"id":1,"name":"学前端","isTick":1},
+    //        {"id":2,"name":"学后端","isTick":0},
+    //      {"id":3,"name":"学测试","isTick":1}
+    //    ];
 
-//    在5-任务列表1的功能的基础上，通过用arr假数据添加到页面ul上
+    //    在5-任务列表1的功能的基础上，通过用arr假数据添加到页面ul上
 
     //    练习3 arr每个元素显示的效果如下，加到ul里面
     //    <li tid="相应的id">
@@ -45,138 +47,140 @@
 
     //练习4 如果isTick为1，那么复选框打钩
 
-//    arr是任务列表数据全局变量
+    //    arr是任务列表数据全局变量
     var arr = [];
 
-//    判断localstorge里面是否有任务列表数据
-    if(localStorage.getItem('arr')){
-//      有的话初始化arr
-      arr = JSON.parse(localStorage.getItem('arr'));
+    //    判断localstorge里面是否有任务列表数据
+    if (localStorage.getItem('arr')) {
+        //      有的话初始化arr
+        arr = JSON.parse(localStorage.getItem('arr'));
     }
 
-//    渲染列表的函数
+    //    渲染列表的函数
     function render(arr) {
-      $('ul').html('');
-      for (var i = 0; i < arr.length; i++) {
-        if(arr[i].isTick){
-          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox" checked><span>'+arr[i].name+'</span><input type="text"><button>删除</button></li>');
-        }else{
-          $('ul').append('<li tid="'+arr[i].id+'"><input type="checkbox"><span>'+arr[i].name+'</span><input type="text"><button>删除</button></li>');
+        $('ul').html('');
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].isTick) {
+                $('ul').append('<li tid="' + arr[i].id + '"><input type="checkbox" checked><span>' + arr[i].name + '</span><input type="text"><button>删除</button></li>');
+            } else {
+                $('ul').append('<li tid="' + arr[i].id + '"><input type="checkbox"><span>' + arr[i].name + '</span><input type="text"><button>删除</button></li>');
+            }
         }
-      }
     }
 
 
-//    显示所有任务
-    $('#all-btn').on('click', function () {
-      render(arr);
+    //    显示所有任务
+    $('#all-btn').on('click', function() {
+        render(arr);
     });
-//    未完成任务
-    $('#unf-btn').on('click', function () {
-      var tmp = [];
-      for (var i = 0; i < arr.length; i++) {
-        if(!arr[i].isTick){
-          tmp.push(arr[i]);
+    //    未完成任务
+    $('#unf-btn').on('click', function() {
+        var tmp = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (!arr[i].isTick) {
+                tmp.push(arr[i]);
+            }
         }
-      }
-      render(tmp);
+        render(tmp);
     });
-//    已完成任务
-    $('#f-btn').on('click', function () {
-      var tmp = [];
-      for (var i = 0; i < arr.length; i++) {
-        if(arr[i].isTick){
-          tmp.push(arr[i]);
+    //    已完成任务
+    $('#f-btn').on('click', function() {
+        var tmp = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].isTick) {
+                tmp.push(arr[i]);
+            }
         }
-      }
-      render(tmp);
+        render(tmp);
     });
 
->>>>>>> 235a1a9dabcae7fbab949cfa78a53ffeabb1daa4
+    >>> >>> > 235 a1a9dabcae7fbab949cfa78a53ffeabb1daa4
 
-  $('input').on('keydown', function (e) {
-    var str = $(this).val().trim();
-    if(e.keyCode == 13 && str){
-//      新建任务就是新建对象
-      var obj = {
-//        uuid是生成唯一id的函数
-        id:uuid(),
-        name:str,
-        isTick:0
-      };
-//      新建的任务添加到任务列表数组
-      arr.push(obj);
-//      把新数组存到localstorge，下次刷新页面后即可拿到最新数据
-      localStorage.setItem('arr', JSON.stringify(arr));
-      $('ul').append('<li tid="'+obj.id+'"><input type="checkbox"><span>'+obj.name+'</span><input type="text"><button>删除</button></li>');
-    }
-  });
-
-<<<<<<< HEAD
-//生成唯一id的函数
-=======
-    $('ul').on('click','button', function (e) {
-      var li = $(this).parent();
-      li.remove();
-      var id = li.attr('tid');
-      for (var i = 0; i < arr.length; i++) {
-        if(id == arr[i].id){
-          arr.splice(i, 1);
-          localStorage.setItem('arr', JSON.stringify(arr));
-          break;
+    $('input').on('keydown', function(e) {
+        var str = $(this).val().trim();
+        if (e.keyCode == 13 && str) {
+            //      新建任务就是新建对象
+            var obj = {
+                //        uuid是生成唯一id的函数
+                id: uuid(),
+                name: str,
+                isTick: 0
+            };
+            //      新建的任务添加到任务列表数组
+            arr.push(obj);
+            //      把新数组存到localstorge，下次刷新页面后即可拿到最新数据
+            localStorage.setItem('arr', JSON.stringify(arr));
+            $('ul').append('<li tid="' + obj.id + '"><input type="checkbox"><span>' + obj.name + '</span><input type="text"><button>删除</button></li>');
         }
-      }
     });
 
-    $('ul').on('click', 'input[type=checkbox]', function (e) {
-      var li = $(this).parent();
-      var id = li.attr('tid');
-      var isTick = $(this).prop('checked');
-      for (var i = 0; i < arr.length; i++) {
-        if(id == arr[i].id){
-          arr[i].isTick = isTick;
-          localStorage.setItem('arr', JSON.stringify(arr));
-          break;
+    << << << < HEAD
+    //生成唯一id的函数
+        === === =
+        $('ul').on('click', 'button', function(e) {
+            var li = $(this).parent();
+            li.remove();
+            var id = li.attr('tid');
+            for (var i = 0; i < arr.length; i++) {
+                if (id == arr[i].id) {
+                    arr.splice(i, 1);
+                    localStorage.setItem('arr', JSON.stringify(arr));
+                    break;
+                }
+            }
+        });
+
+    $('ul').on('click', 'input[type=checkbox]', function(e) {
+        var li = $(this).parent();
+        var id = li.attr('tid');
+        var isTick = $(this).prop('checked');
+        for (var i = 0; i < arr.length; i++) {
+            if (id == arr[i].id) {
+                arr[i].isTick = isTick;
+                localStorage.setItem('arr', JSON.stringify(arr));
+                break;
+            }
         }
-      }
     });
-    $('ul').on('dblclick', 'li span', function (e) {
-      var li = $(this).parent();
-      li.addClass('edit');
-      $(this).siblings('input[type=text]').val($(this).html());
+    $('ul').on('dblclick', 'li span', function(e) {
+        var li = $(this).parent();
+        li.addClass('edit');
+        $(this).siblings('input[type=text]').val($(this).html());
 
     });
-    $('ul').on('blur', 'li input[type=text]', function (e) {
-      var li = $(this).parent();
-      var id = li.attr('tid');
-      var val = $(this).val();
-      for (var i = 0; i < arr.length; i++) {
-        if(id==arr[i].id){
-          arr[i].name = val;
-          render(arr);
-          localStorage.setItem('arr', JSON.stringify(arr));
-          break;
+    $('ul').on('blur', 'li input[type=text]', function(e) {
+        var li = $(this).parent();
+        var id = li.attr('tid');
+        var val = $(this).val();
+        for (var i = 0; i < arr.length; i++) {
+            if (id == arr[i].id) {
+                arr[i].name = val;
+                render(arr);
+                localStorage.setItem('arr', JSON.stringify(arr));
+                break;
+            }
         }
-      }
 
     });
 
 
->>>>>>> 235a1a9dabcae7fbab949cfa78a53ffeabb1daa4
+    >>> >>> > 235 a1a9dabcae7fbab949cfa78a53ffeabb1daa4
+
     function uuid() {
-      var i, random;
-      var uuid = '';
+        var i, random;
+        var uuid = '';
 
-      for (i = 0; i < 32; i++) {
-        random = Math.random() * 16 | 0;
-        if (i === 8 || i === 12 || i === 16 || i === 20) {
-          uuid += '-';
+        for (i = 0; i < 32; i++) {
+            random = Math.random() * 16 | 0;
+            if (i === 8 || i === 12 || i === 16 || i === 20) {
+                uuid += '-';
+            }
+            uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
         }
-        uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
-      }
 
-      return uuid;
+        return uuid;
     }
-</script>
+    </script>
 </body>
+
 </html>
