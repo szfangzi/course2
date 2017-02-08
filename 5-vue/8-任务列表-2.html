@@ -12,13 +12,13 @@
   <input type="text" placeholder="请填写你的任务" v-model="text" v-on:keydown.enter="newTodo">
   <ul>
     <li v-for="todo in todos" v-if="hash=='' || hash=='#all'">
-      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check($index)" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
+      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check()" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
     </li>
     <li v-for="todo in todos | filterBy unf" v-if="hash=='#unf'">
-      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check($index)" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
+      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check()" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
     </li>
     <li v-for="todo in todos | filterBy f" v-if="hash=='#f'">
-      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check($index)" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
+      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check()" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
     </li>
   </ul>
 </div>
@@ -46,7 +46,7 @@ var vm = new Vue({
       this.todos.splice(index, 1);
       localStorage.setItem('list', JSON.stringify(this.todos));
     },
-    check:function(index) {
+    check:function() {
       setTimeout(function() {
         localStorage.setItem('list', JSON.stringify(this.todos));
       }.bind(this), 0);
