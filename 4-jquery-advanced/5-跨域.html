@@ -16,31 +16,34 @@
     //
     //  Jquery如何实现跨域？
     //  答：通过jsonp的方法
-    //其中http://192.168.4.110:3000/jsonp是接口地址, jsonpCallback是指定的回调函数
+    //其中http://192.168.4.110:4000/jsonp是接口地址, jsonpCallback是指定的回调函数
     //后端的接口在jsonp-api/jsonp.js
 
     // 不支持跨域
-    // $.get('http://192.168.4.110:3000/json', function(data) {
+    // $.get('http://192.168.4.110:4000/json', function(data) {
     //   console.log(data);
     // })
 
-    function jsonpCallback(result) {
-      console.log(result);
-    }
+    // function jsonpCallback(result) {
+    //   console.log(111,result);
+    // }
+
   </script>
 
   <!-- 原生如何实现跨域 -->
-  <!-- <script type="text/javascript" src="http://192.168.4.110:3000/jsonp2?callback=jsonpCallback"></script> -->
+  <!-- <script type="text/javascript" src="http://192.168.4.110:4000/jsonp2?callback=jsonpCallback"></script> -->
   <script type="text/javascript">
   //Jquery如何实现跨域？
       // $.ajax({
-      //   url: 'http://192.168.4.110:3000/jsonp2?callback=jsonpCallback',
+      //   url: 'http://192.168.4.110:4000/jsonp2',
+      //   data:{callback:"jsonpCallback"},
       //   dataType: 'jsonp',
-      //   method: 'GET',
-      //   success: function(rs) {
-      //
-      //   }
+      //   method: 'GET'
       // });
+// 简写
+      $.getJSON('http://192.168.4.110:4000/jsonp2?callback=?', function(data) {
+        console.log(111,data);
+      });
   </script>
 
 </body>

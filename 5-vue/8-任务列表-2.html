@@ -9,11 +9,62 @@
 <!--练习2 在之前的基础上加上 回车加任务的功能  提示：去空格的函数是 字符串.trim() -->
 <div id="app">
   <h1>任务列表</h1>
-  <input type="text" placeholder="请填写你的任务">
+  <input type="text" placeholder="请填写你的任务" v-model="text" v-on:keydown.enter="newTodo">
   <ul>
-
+    <li v-for="todo in todos" v-if="hash=='' || hash=='#all'">
+      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check($index)" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
+    </li>
+    <li v-for="todo in todos | filterBy unf" v-if="hash=='#unf'">
+      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check($index)" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
+    </li>
+    <li v-for="todo in todos | filterBy f" v-if="hash=='#f'">
+      <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check($index)" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
+    </li>
   </ul>
 </div>
+<span>还剩下<b></b>个未完成的任务</span>
+<a href="#all">所有任务</a>
+<a href="#unf">未完成的任务</a>
+<a href="#f">已完成的任务</a>
+<a href="javascript:;">删除所有已完成的任务</a>
+
+<script type="text/javascript">
+var vm = new Vue({
+  el: '#app',
+  data: {
+    todos: JSON.parse(localStorage.getItem('list')),
+    text:'',
+    hash:location.hash
+  },
+  methods: {
+    newTodo: function () {
+      this.todos.push({text:this.text,isTick:0});
+      this.text = '';
+      localStorage.setItem('list', JSON.stringify(this.todos));
+    },
+    del:function(index) {
+      this.todos.splice(index, 1);
+      localStorage.setItem('list', JSON.stringify(this.todos));
+    },
+    check:function(index) {
+      setTimeout(function() {
+        localStorage.setItem('list', JSON.stringify(this.todos));
+      }.bind(this), 0);
+    },
+    unf:function(n) {
+      return !n.isTick;
+    },
+    f:function(n) {
+      return n.isTick;
+    }
+  }
+});
+
+window.addEventListener('hashchange', function() {
+  vm.hash = location.hash;
+});
+
+</script>
 <!-- 练习4 运用localStorge读取任务列表以及存任务 -->
 
 <!-- 练习5 每个li元素里面要多一个删除按钮，可以删除li元素，localStorge里面的相应数据也要删除 -->

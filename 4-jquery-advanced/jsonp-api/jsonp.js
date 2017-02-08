@@ -30,13 +30,13 @@ app.get('/jsonp',function(req,res,next){
 });
 
 app.get('/jsonp2',function(req,res,next){
-  res.send('jsonpCallback('+JSON.stringify({status:"你成功调用jsonp的接口了！"})+')');
+  res.send(req.query.callback + '('+JSON.stringify({status:"你成功调用jsonp的接口了！"})+')');
 });
 
 app.get('/json',function(req,res,next){
   res.json({status:'json'});
 });
 
-http.createServer(app).listen(3000, function(){
+http.createServer(app).listen(4000, function(){
   console.log("Express server listening on port 3000 ");
 });

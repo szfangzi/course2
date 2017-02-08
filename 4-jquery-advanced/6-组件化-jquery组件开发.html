@@ -114,43 +114,70 @@
 <script>
 
 //组件函数介绍
-//$.fn.tanchuang = function (options) {
-//  var default_options = {
-//    width:600,
-//    height:300
-//  };
-//  var opt = $.extend({},default_options,options);
-//};
-//
-//var x = $('#popup-wrapper').tanchuang({
-//  width:1000
-//});
+
+$.fn.aaa = function (opt) {
+  var self = this;
+  var defaults = {
+    width:200,
+    height:200
+  };
+  self.options = $.extend({}, defaults, opt);
+
+  init();
+
+  function init() {
+    initStyle();
+    eventBind()
+  }
+
+// 初始化样式
+  function initStyle() {
+    var loginbox = self.find('#login');
+    loginbox.css({width:self.options.width+'px',height:self.options.height+'px',left:-self.options.width/2+'px',top:-self.options.height/2+'px'})
+
+  }
+// 绑定函数
+  function eventBind() {
+    self.find('.close').on('click', function () {
+      self.close();
+    })
+  }
+
+  self.open = function() {
+    self.show();
+    self.options.openCallback && self.options.openCallback();
+  }
+
+  self.close = function() {
+    self.hide();
+  }
 
 
-//$.fn.tanchuang = function (options) {
-//  var self = this;
-//  self.init = function () {
-//    console.log('弹窗初始化！');
-//  };
-//  self.open = function () {
-//    console.log('弹窗了！');
-//  };
-//  return self;
-//};
 
+  return self;
+}
+
+var popup = $('#popup-wrapper').aaa({
+  width:400,
+  openCallback:function() {
+    console.log('弹窗后执行的代码');
+  }
+});
+
+popup.open();
 
   //弹窗
-  var loginPopup = $('#popup-wrapper').modal({
-    width:1000,
-    height:600,
-    openCallBack:function(){
-      console.log('弹窗后执行的函数！');
-    },
-    closeCallBack:function(){
-
-    }
-  });
-  loginPopup.open();
+  // var loginPopup = $('#popup-wrapper').modal({
+  //   width:1000,
+  //   height:600,
+  //   openCallBack:function(){
+  //     console.log('弹窗后执行的函数！');
+  //   },
+  //   closeCallBack:function(){
+  //
+  //   }
+  // });
+  // loginPopup.open();
 
 
 
@@ -174,28 +201,28 @@
 //  return dom;
 //};
 
-
-var $ = function (selector) {
-  var dom = document.querySelector(selector);
-  for (var k in $.fn) {
-    dom[k]=$.fn[k]
-  }
-
-  return dom;
-};
-$.fn = {};
-$.fn.aaa = function (options) {
-  console.log(options);
-  console.log(this);
-};
-$.fn.bbb = function (options) {
-  console.log(options);
-  console.log(this);
-};
-//var x = $('#tanchuang');
-var x = $('#tanchuang').aaa({
-  width:1000
-});
+//
+// var $ = function (selector) {
+//   var dom = document.querySelector(selector);
+//   for (var k in $.fn) {
+//     dom[k]=$.fn[k]
+//   }
+//
+//   return dom;
+// };
+// $.fn = {};
+// $.fn.aaa = function (options) {
+//   console.log(options);
+//   console.log(this);
+// };
+// $.fn.bbb = function (options) {
+//   console.log(options);
+//   console.log(this);
+// };
+// //var x = $('#tanchuang');
+// var x = $('#tanchuang').aaa({
+//   width:1000
+// });
 
 
 
