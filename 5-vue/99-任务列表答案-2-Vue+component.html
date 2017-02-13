@@ -27,17 +27,16 @@
 
   var store = new Vue({
     data:{
-      list:store.getList(),
-      unFLen:store.getList().filter(function (val) {
-        return val.isTick == 0;
-      }).length
+      list:[]
+    },
+    created:function(){
+      this.list = this.getList();
     },
     watch:{
       'list':{
 //        一旦数组修改，马上保存数据到localstorge
         handler:function(val,oldVal){
-          store.setList(val);
-          this.unFLen = store.getList().filter(this.unfFilter).length;
+          this.setList(val);
         },
 //        深度监听，可以监听对象里面的值变化
         deep:true
@@ -57,9 +56,10 @@
         }
       },
 //      新增任务
-      add: function () {
-        this.list.push({text:this.newTodo,isTick:false});
-        this.newTodo = '';
+      add: function (newTodo, callback) {
+        this.list.push(newTodo);
+        console.log(newTodo);
+        callback();
       },
 //      删除任务
       del: function (id) {
@@ -82,9 +82,19 @@
     }
   });
 
+  var todoMixin = {
+    methods:{
+      //      删除任务
+      del: function (id) {
+        store.del(id);
+      },
+    }
+  };
+
   Vue.component('all', {
     template:'<ul><li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li></ul>',
     props:['list'],
+    mixins: [todoMixin],
     computed:{
       newlist: function () {
         return this.list;
@@ -95,6 +105,7 @@
   Vue.component('unf', {
     template:'<ul><li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li></ul>',
     props:['list'],
+    mixins: [todoMixin],
     computed:{
       newlist: function () {
         return this.list.filter(function (val) {
@@ -107,6 +118,7 @@
   Vue.component('f', {
     template:'<ul><li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li></ul>',
     props:['list'],
+    mixins: [todoMixin],
     computed:{
       newlist: function () {
         return this.list.filter(function (val) {
@@ -120,43 +132,25 @@
     el:'#app',
     data:{
       newTodo:'',
-      list:store.getList(),
-      currentView:location.hash.split('#')[1] || 'all',
-      unFLen:store.getList().filter(function (val) {
-        return val.isTick == 0;
-      }).length
+      currentView:location.hash.split('#')[1] || 'all'
     },
-    watch:{
-      'list':{
-//        一旦数组修改，马上保存数据到localstorge
-        handler:function(val,oldVal){
-          store.setList(val);
-          this.unFLen = store.getList().filter(this.unfFilter).length;
-        },
-//        深度监听，可以监听对象里面的值变化
-        deep:true
+    computed:{
+      list:function(){
+        return store.list;
+      },
+      unFLen:function(){
+        return this.list.filter(this.unfFilter).length
       }
     },
     methods:{
 //      新增任务
       add: function () {
-        this.list.push({text:this.newTodo,isTick:false});
-        this.newTodo = '';
-      },
-//      删除任务
-      del: function (id) {
-        this.list.find(function(v, i, list) {
-          if(v.id == id){
-            list.splice(i, 1);
-            return true;
-          }else{
-            return false;
-          }
-          
-        });
+        store.add({id:this.uuid(),text:this.newTodo,isTick:false}, function(){
+          this.newTodo = '';
+        }.bind(this));
       },
       delf: function () {
-        this.list = this.list.filter(this.unfFilter);
+        store.delf();
       },
       unfFilter:function(val) {
         return !val.isTick;

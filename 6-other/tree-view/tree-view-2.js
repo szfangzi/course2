@@ -10,13 +10,13 @@ $.ajax({
 
 Vue.component('treeview', {
     name:'treeview',
-    template:'<div v-for="item in data" class="node">' +
+    template:'<div><div v-for="item in data" class="node">' +
         '<template v-if="item.childs">' +
     '<b v-show="item.expand">-</b><b v-else>+</b>' +
     '</template>'+
     '<span>{{item.name}}</span>' +
     '<treeview v-if="item.childs" v-bind:data="item.childs" ></treeview>' +
-    '</div>',
+    '</div></div>',
     props:['data']
 
 });

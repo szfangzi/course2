@@ -1,3 +1,7 @@
+var store = new Vue({
+
+});
+
 Vue.component('modal', {
   template: '<div class="maskWrapper" id="popup-wrapper" v-show="data.show" >' +
   '<div class="popupWrapper">' +
@@ -23,17 +27,15 @@ Vue.component('modal', {
   '<div class="mask"></div>' +
   '</div>',
   props: ['data'],
+  created:function() {
+    store.$on('open', this.open)
+  },
   methods: {
     close: function () {
       this.data.show = false;
     },
     open: function () {
       this.data.show = true;
-    }
-  },
-  events:{
-    onOpen: function () {
-      this.open();
     }
   }
 
@@ -51,7 +53,7 @@ var vm = new Vue({
   },
   methods:{
     openLoginPopup: function () {
-      this.$broadcast('onOpen');
+      store.$emit('open');
     }
   }
 });

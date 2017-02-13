@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <script src="public/vue.js"></script>
+    <script src="public/vue2.min.js"></script>
 </head>
 <body>
 
@@ -16,7 +16,7 @@
 //  把常用的模板做成单独的组件,然后到处都可以调用
 //组件必须要在vm实例对象之前就定义好!!!
   Vue.component('node', {
-    template:'<div v-for="item in data" class="node">{{item.name}}</div>',
+    template:'<div><div v-for="item in data" class="node">{{item.name}}</div></div>',
     props:['data'],
 //    组件的方法(比如过滤器,比如事件绑定的方法)
     methods:{
