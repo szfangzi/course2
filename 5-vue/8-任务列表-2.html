@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <script type="text/javascript" src="public/vue.js"></script>
+    <script src="public/vue2.min.js"></script>
 </head>
 <body>
 <!--练习2 在之前的基础上加上 回车加任务的功能  提示：去空格的函数是 字符串.trim() -->
@@ -14,19 +14,20 @@
     <li v-for="todo in todos" v-if="hash=='' || hash=='#all'">
       <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check()" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
     </li>
-    <li v-for="todo in todos | filterBy unf" v-if="hash=='#unf'">
+    <li v-for="todo in unf" v-if="hash=='#unf'">
       <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check()" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
     </li>
-    <li v-for="todo in todos | filterBy f" v-if="hash=='#f'">
+    <li v-for="todo in f" v-if="hash=='#f'">
       <input type="checkbox" name="" value="" v-model="todo.isTick" v-on:click="check()" /><span>{{todo.text}}</span><button type="button" name="button" v-on:click="del($index)">删除</button>
     </li>
   </ul>
+  <span>还剩下<b></b>个未完成的任务</span>
+  <a href="#all">所有任务</a>
+  <a href="#unf">未完成的任务</a>
+  <a href="#f">已完成的任务</a>
+  <a href="javascript:;">删除所有已完成的任务</a>
 </div>
-<span>还剩下<b></b>个未完成的任务</span>
-<a href="#all">所有任务</a>
-<a href="#unf">未完成的任务</a>
-<a href="#f">已完成的任务</a>
-<a href="javascript:;">删除所有已完成的任务</a>
+
 
 <script type="text/javascript">
 var vm = new Vue({
@@ -35,6 +36,18 @@ var vm = new Vue({
     todos: JSON.parse(localStorage.getItem('list')),
     text:'',
     hash:location.hash
+  },
+  computed:{
+    unf:function() {
+      return this.todos.filter(function(n) {
+        return !n.isTick;
+      })
+    },
+    f:function() {
+      return this.todos.filter(function(n) {
+        return n.isTick;
+      })
+    }
   },
   methods: {
     newTodo: function () {
@@ -50,12 +63,6 @@ var vm = new Vue({
       setTimeout(function() {
         localStorage.setItem('list', JSON.stringify(this.todos));
       }.bind(this), 0);
-    },
-    unf:function(n) {
-      return !n.isTick;
-    },
-    f:function(n) {
-      return n.isTick;
     }
   }
 });

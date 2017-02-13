@@ -8,7 +8,7 @@
       text-decoration: line-through;
     }
   </style>
-  <script src="public/vue.js"></script>
+  <script src="public/vue2.min.js"></script>
 </head>
 <body>
 
@@ -16,11 +16,11 @@
   <input type="text" v-model="newTodo" v-on:keypress.enter="add">
   <ul>
     <!--所有任务-->
-    <li v-for="todo in list" v-if="hash=='#all'||hash==''" v-bind:class="{'del-line':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del($index)">x</button></li>
+    <li v-for="todo in list" v-if="hash=='#all'||hash==''" v-bind:class="{'del-line':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li>
 <!--未完成任务-->
-    <li v-for="todo in list | filterBy unfFilter" v-if="hash=='#unf'" v-bind:class="{'del-line':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del($index)">x</button></li>
+    <li v-for="todo in unfFilter" v-if="hash=='#unf'" v-bind:class="{'del-line':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li>
 <!--已完成任务-->
-    <li v-for="todo in list | filterBy fFilter" v-if="hash=='#f'" v-bind:class="{'del-line':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del($index)">x</button></li>
+    <li v-for="todo in fFilter" v-if="hash=='#f'" v-bind:class="{'del-line':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li>
   </ul>
   <span>还剩下<b>{{unFLen}}</b>个未完成的任务</span>
   <a href="#all">所有任务</a>
@@ -61,32 +61,64 @@
 //        一旦数组修改，马上保存数据到localstorge
         handler:function(val,oldVal){
           store.setList(val);
-          this.unFLen = store.getList().filter(this.unfFilter).length;
+          this.unFLen = store.getList().filter(function(n) {
+            return !n.isTick;
+          }).length;
         },
 //        深度监听，可以监听对象里面的值变化
         deep:true
       }
     },
+    computed:{
+      unfFilter:function() {
+        return this.list.filter(function(n) {
+          return !n.isTick;
+        })
+      },
+      fFilter:function() {
+        return this.list.filter(function(n) {
+          return n.isTick;
+        })
+      }
+    },
     methods:{
 //      新增任务
       add: function () {
-        this.list.push({text:this.newTodo,isTick:false});
+        this.list.push({id:this.uuid(),text:this.newTodo,isTick:false});
         this.newTodo = '';
       },
 //      删除任务
-      del: function (index) {
-        this.list.$remove(this.list[index]);
-      },
-//      未完成任务过滤器
-      unfFilter:function (val){
-        return val.isTick == false;
-      },
-//      已完成任务过滤器
-      fFilter:function (val){
-        return val.isTick == true;
+      del: function (id) {
+        this.list.find(function(v, i, list) {
+          if(v.id == id){
+            list.splice(i, 1);
+            return true;
+          }else{
+            return false;
+          }
+          
+        });
+
       },
       delf: function () {
-        this.list = this.list.filter(this.unfFilter);
+        this.list = this.list.filter(function(n) {
+          return !n.isTick;
+        });
+      },
+      //  生成唯一的id
+      uuid:function() {
+        var i, random;
+        var uuid = '';
+
+        for (i = 0; i < 32; i++) {
+          random = Math.random() * 16 | 0;
+          if (i === 8 || i === 12 || i === 16 || i === 20) {
+            uuid += '-';
+          }
+          uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+        }
+
+        return uuid;
       }
     }
   });

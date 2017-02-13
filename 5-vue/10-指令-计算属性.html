@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-  <script src="public/vue.js"></script>
+  <script src="public/vue2.min.js"></script>
 </head>
 <body>
 
@@ -11,7 +11,7 @@
 <div id="app">
   <ul>
     <!--过滤器-->
-    <li v-for="todo in todos | filterBy isTick">
+    <li v-for="todo in unf">
       {{ todo.name }}
     </li>
   </ul>
@@ -27,10 +27,11 @@ new Vue({
       {name:"b",isTick:1}
     ]
   },
-  methods:{
-//    过滤器函数
-    isTick: function (val) {
-      return val.isTick == 1;
+  computed:{
+    unf:function() {
+      return this.todos.filter(function(n) {
+        return !n.isTick;
+      })
     }
   }
 });

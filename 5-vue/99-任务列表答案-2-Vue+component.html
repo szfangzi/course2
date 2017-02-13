@@ -8,15 +8,14 @@
       text-decoration: line-through;
     }
   </style>
-  <script src="public/js/vue.js"></script>
+  <script src="public/vue2.min.js"></script>
 </head>
 <body>
 
 <div id="app">
+  <h1>任务列表</h1>
   <input type="text" v-model="newTodo" v-on:keypress.enter="add">
-  <ul>
-    <component :is="currentView" v-bind:list="list"></component>
-  </ul>
+  <component :is="currentView" v-bind:list="list"></component>
   <span>还剩下<b>{{unFLen}}</b>个未完成的任务</span>
   <a href="#all">所有任务</a>
   <a href="#unf">未完成的任务</a>
@@ -26,23 +25,65 @@
 
 <script>
 
-  var store = {
-    setList:function(arr) {
-      if(arr!="" && arr!=undefined){
-        localStorage.list = JSON.stringify(arr);
+  var store = new Vue({
+    data:{
+      list:store.getList(),
+      unFLen:store.getList().filter(function (val) {
+        return val.isTick == 0;
+      }).length
+    },
+    watch:{
+      'list':{
+//        一旦数组修改，马上保存数据到localstorge
+        handler:function(val,oldVal){
+          store.setList(val);
+          this.unFLen = store.getList().filter(this.unfFilter).length;
+        },
+//        深度监听，可以监听对象里面的值变化
+        deep:true
       }
     },
-    getList:function() {
-      if(localStorage.list!="" && localStorage.list!=undefined){
-        return JSON.parse(localStorage.list);
-      }else{
-        return [];
+    methods:{
+      setList:function(arr) {
+        if(arr!="" && arr!=undefined){
+          localStorage.list = JSON.stringify(arr);
+        }
+      },
+      getList:function() {
+        if(localStorage.list!="" && localStorage.list!=undefined){
+          return JSON.parse(localStorage.list);
+        }else{
+          return [];
+        }
+      },
+//      新增任务
+      add: function () {
+        this.list.push({text:this.newTodo,isTick:false});
+        this.newTodo = '';
+      },
+//      删除任务
+      del: function (id) {
+        this.list.find(function(v, i, list) {
+          if(v.id == id){
+            list.splice(i, 1);
+            return true;
+          }else{
+            return false;
+          }
+          
+        });
+      },
+      delf: function () {
+        this.list = this.list.filter(this.unfFilter);
+      },
+      unfFilter:function(val) {
+        return !val.isTick;
       }
     }
-  };
+  });
 
   Vue.component('all', {
-    template:'<li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del($index)">x</button></li>',
+    template:'<ul><li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li></ul>',
     props:['list'],
     computed:{
       newlist: function () {
@@ -52,24 +93,24 @@
   });
 
   Vue.component('unf', {
-    template:'<li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del($index)">x</button></li>',
+    template:'<ul><li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li></ul>',
     props:['list'],
     computed:{
       newlist: function () {
         return this.list.filter(function (val) {
-          return val.isTick == false;
+          return !val.isTick;
         });
       }
     }
   });
 
   Vue.component('f', {
-    template:'<li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del($index)">x</button></li>',
+    template:'<ul><li v-for="todo in newlist" v-bind:class="{\'del-line\':todo.isTick}"><input type="checkbox" v-model="todo.isTick" > <span>{{todo.text}}</span><button v-on:click="del(todo.id)">x</button></li></ul>',
     props:['list'],
     computed:{
       newlist: function () {
         return this.list.filter(function (val) {
-          return val.isTick == true;
+          return val.isTick;
         });
       }
     }
@@ -103,11 +144,37 @@
         this.newTodo = '';
       },
 //      删除任务
-      del: function (index) {
-        this.list.$remove(this.list[index]);
+      del: function (id) {
+        this.list.find(function(v, i, list) {
+          if(v.id == id){
+            list.splice(i, 1);
+            return true;
+          }else{
+            return false;
+          }
+          
+        });
       },
       delf: function () {
         this.list = this.list.filter(this.unfFilter);
+      },
+      unfFilter:function(val) {
+        return !val.isTick;
+      },
+      //  生成唯一的id
+      uuid:function() {
+        var i, random;
+        var uuid = '';
+
+        for (i = 0; i < 32; i++) {
+          random = Math.random() * 16 | 0;
+          if (i === 8 || i === 12 || i === 16 || i === 20) {
+            uuid += '-';
+          }
+          uuid += (i === 12 ? 4 : (i === 16 ? (random & 3 | 8) : random)).toString(16);
+        }
+
+        return uuid;
       }
     }
   });
