@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <style>
+    *{padding: 0;margin: 0;}
+    ul,ol,li{list-style: none;}
+    .directory{
+      float: left;
+      width: 200px;
+    }
+    .list{
+      float: left;
+      width: 500px;
+      margin-left: 100px;
+    }
+.directory li, .list a{
+  display: block;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  background-color: #00aaee;
+  color: white;
+  line-height: 50px;
+  border: 1px solid #0000FF;
+}
+    .directory li.on{
+      background-color: #c9302c;
+    }
+    .list a{
+      cursor: pointer;
+    }
+    *::selection{
+      text-shadow: none;
+    }
+  </style>
+  <script src="public/vue2.min.js"></script>
+</head>
+<body>
+<div id="app">
+<ul class="directory">
+  <li v-for="(dir,index) in dirs" v-bind:class="{'on':dir.isOver == 1}" v-on:dragover.prevent="dragover(index)" v-on:drop="drop(index)"><a href="javascript:;" v-on:click="type=dir.type">{{dir.name}} (<b>{{dir.len}}</b>个文件)</a></li>
+</ul>
+<div class="list">
+  <h1>文件夹{{type}}的文件列表</h1>
+  <ul>
+    <a href="javascript:;" v-for="file in newList" v-on:dragstart="tempName=file.name" v-on:dragend="clearOver">{{file.name}}</a>
+  </ul>
+</div>
+</div>
+<!--拖拽样式修复-空白图片-->
+<img src="public/img/blank.gif" alt="" style="position: fixed;top:0;left: 0;z-index: 0" id="dragMouseImg">
+
+<script src="public/ejs.min.js"></script>
+<script>
+
+  var vm = new Vue({
+    el:'#app',
+    data:{
+      list:[{name:'文件1',type:1},{name:'文件2',type:2},{name:'文件3',type:1},{name:'文件4',type:2},{name:'文件5',type:1}],
+      dirs:[],
+      type:1,
+      tempName:''
+    },
+    created:function() {
+      var dirs = [{name:'文件夹1', type:1}, {name:'文件夹2', type:2}];
+      this.dirs = dirs.map(function(dir) {
+        dir.len = this.list.filter(function(file) {
+          return file.type == dir.type;
+        }).length;
+        dir.isOver = 0;
+        return dir;
+      }.bind(this));
+    },
+    watch:{
+      'list':{
+        handler:function(newList, val) {
+          this.dirs.map(function(dir) {
+            dir.len = newList.filter(function(file) {
+              return file.type == dir.type;
+            }).length;
+            return dir;
+          }.bind(this));
+        },
+        deep:true
+      }
+    },
+    computed:{
+      newList:function() {
+        return this.list.filter(function(file) {
+          return file.type == this.type;
+        }.bind(this));;
+      }
+      
+    },
+    methods:{
+      drop:function(index) {
+        this.list.find(function(file) {
+          if(this.tempName == file.name){
+            file.type = this.dirs[index].type;
+            return true;
+          }else{
+            return false;
+          }
+        }.bind(this));
+      },
+      dragover:function(index) {
+        this.clearOver();
+        this.dirs[index].isOver = 1;
+      },
+      clearOver:function() {
+        this.dirs.forEach(function(dir) {
+          dir.isOver = 0;
+        })
+      }
+    }
+  })
+
+
+</script>
+</body>
+</html>

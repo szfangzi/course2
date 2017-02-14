@@ -21,8 +21,8 @@ var p = {
 };
 
 //c通过原型关联到p对象
-var c = Object.create(p);
-//var c = create(p);
+// var c = Object.create(p);
+var c = create(p);
 //模拟create方法
 function create(o) {
   function F(){}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>nodejs</title>
+	<script src="jquery.min.js"></script>
+</head>
+<body>
+	我的第一个nodejs页面
+
+	<script>
+		$.post('/todos', {name:'学外语'}, function(data) {
+			console.log(1,data);
+		});
+	</script>
+</body>
+</html>
