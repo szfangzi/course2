@@ -35,10 +35,48 @@ app.post('/todos', function (req, res) {
   });
 });
 
+// 修改任务
+app.put('/todos/:id', function (req, res) {
+  var updateText = '';
+  var id = req.params.id;
+  var isTick = req.body.isTick;
+  console.log(id,isTick);
+  db.query('update list set isTick=' + isTick + ' where id='+id, function(err, data){
+    if(!err){
+      res.json(data);
+    }else{
+      console.log(err);
+      res.json({});
+    }
+  });
+});
 
-// var name = req.body.name;
-//   db.query('insert into list (name) values("'+name+'")',
-// insert into list (name) values("'+name+'")'
+// 删除任务
+app.delete('/todos/:id', function (req, res) {
+  var id = req.params.id;
+  db.query('delete from list where id = '+id, function(err, data){
+    if(!err){
+      res.json({id:id});
+    }else{
+      console.log(err);
+      res.json({});
+    }
+  });
+});
+
+// 删除已完成的任务
+app.post('/todos/delf', function (req, res) {
+  var ids = req.body.filteredTodosIds;
+  db.query('delete from list where id in ('+ids+')', function(err, data){
+    if(!err){
+      res.json({ids:ids});
+    }else{
+      console.log(err);
+      res.json({});
+    }
+  });
+});
+
 var server = app.listen(3000, function () {
   console.log(11111);
   // var host = server.address().address;
