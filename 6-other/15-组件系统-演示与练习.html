@@ -9,24 +9,43 @@
 
 <div id="app">
   <!--把数据list绑定到组件里面的data-->
-  <node v-bind:data="list" ></node>
+  <node v-bind:data="list" v-on:change="can">
+    <span>{{q}}</span>
+    <span slot="test">名字为test的slot</span>
+  </node>
 </div>
 
 <script>
 //  把常用的模板做成单独的组件,然后到处都可以调用
 //组件必须要在vm实例对象之前就定义好!!!
   Vue.component('node', {
-    template:'<div><div v-for="item in data" class="node">{{item.name}}</div></div>',
+    template:`<div>
+        <div v-for="item in data" class="node" v-on:click="can">
+          {{item.name}}
+          <slot>
+            只有在没有要分发的内容时才会显示。
+          </slot>
+          <slot name="test"></slot>
+        </div>
+      </div>`,
     props:['data'],
 //    组件的方法(比如过滤器,比如事件绑定的方法)
     methods:{
-
+      can:function() {
+        this.$emit('change');
+      }
     }
   });
   var vm = new Vue({
     el:'#app',
     data:{
-      list:[{name:'苹果'},{name:'三星'}]
+      list:[{name:'苹果'},{name:'三星'}],
+      q:'默认slot'
+    },
+    methods:{
+      can:function() {
+        console.log(111);
+      }
     }
   });
 
