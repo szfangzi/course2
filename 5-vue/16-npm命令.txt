@@ -1,0 +1,4 @@
+npm init            初始化项目
+npm i -save 插件名  安装插件
+npm i               根据package.json来安装插件
+node js文件         运行后端的js
